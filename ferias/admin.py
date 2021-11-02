@@ -7,6 +7,7 @@ class FeriaAdmin(admin.ModelAdmin):
     search_fields = ['ferias_id', 'nombre', 'distrito']
     list_display = ('ferias_id', '__str__', 'provincia')
     list_filter = ['provincia', 'canton']
+    filter_horizontal = ('oferta',)
     form = FeriaForm
 
 

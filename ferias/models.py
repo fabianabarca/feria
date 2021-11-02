@@ -1,6 +1,4 @@
 from django.db import models
-from django.utils.translation import ugettext as _
-from .utils import *
 
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
     relevante de ellas '''
@@ -42,8 +40,8 @@ class Producto(models.Model):
         choices=CATEGORIAS_PRODUCTOS)
     nombre_cientifico = models.CharField(max_length=128, blank=True)
     nombre_comun = models.CharField(max_length=128)
-    imagen = models.ImageField()
-    icono = models.ImageField()
+    imagen = models.ImageField(blank=True)
+    icono = models.ImageField(blank=True)
     descripcion = models.TextField()
     temporada = models.TextField()
 
@@ -52,6 +50,9 @@ class Producto(models.Model):
         db_table = 'productos'
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
+    def __str__(self):
+        return self.nombre_comun
+    
 
 
 class Feria(models.Model):
