@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'ferias',
     'inicio',
     'rest_framework',
     'django.contrib.admin',
