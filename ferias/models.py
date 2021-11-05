@@ -31,6 +31,8 @@ CATEGORIAS_PRODUCTOS = (
     (5, 'Otros')
 )
 
+def path_producto(instance, filename):
+    return 'static/producto/{}/{}'.format(instance.nombre_comun, filename)
 
 class Producto(models.Model):
     ''' Modelo de un producto, contiene información básica de los diferentes
@@ -40,8 +42,8 @@ class Producto(models.Model):
         choices=CATEGORIAS_PRODUCTOS)
     nombre_cientifico = models.CharField(max_length=128, blank=True)
     nombre_comun = models.CharField(max_length=128)
-    imagen = models.ImageField(blank=True)
-    icono = models.ImageField(blank=True)
+    imagen = models.ImageField(upload_to=path_producto)
+    icono = models.ImageField(upload_to=path_producto)
     descripcion = models.TextField()
     temporada = models.TextField()
 
@@ -50,9 +52,9 @@ class Producto(models.Model):
         db_table = 'productos'
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
+
     def __str__(self):
-        return self.nombre_comun
-    
+        return (self.nombre_comun)
 
 
 class Feria(models.Model):
