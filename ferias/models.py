@@ -32,7 +32,7 @@ CATEGORIAS_PRODUCTOS = (
 )
 
 def path_producto(instance, filename):
-    return 'static/producto/{}/{}'.format(instance.nombre_comun, filename)
+    return 'producto/{}/{}'.format(instance.nombre_comun, filename)
 
 class Producto(models.Model):
     ''' Modelo de un producto, contiene información básica de los diferentes
