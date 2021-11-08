@@ -3,8 +3,64 @@
 
 {% block title %}Inicio{% endblock title %}
 
-{% block content %}
-<h1>Página de prueba</h1>
+{% block styles %}
+<style>
+    body{
+        background-color: #f8f9fa;
+    }
+    .list-group-item{
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    .list-group-item:hover{
+        background-color: rgba(77, 182, 77, 0.5);
+    }
+    .img-circle {
+        border-radius: 25%;
+        width: 3rem;
+        height: 3rem;
+    }
+</style>
+{% endblock %}
 
-<p><i class="bi-house" style="font-size: 2rem"></i> Aquí estará la página de inicio del sitio.</p>
+{% block content %}
+<div class="container">
+    <div class="row">        
+        <div class="col-md-6">
+            <h1 class="text-center">Productos disponibles</h1>
+            <div class="list-group list-group-flush shadow-sm mb-5 bg-body rounded">
+            {% for producto in productos %}
+                <label class="list-group-item d-flex justify-content-start align-items-center">
+                    <img src="media/{{ producto.imagen }}" class="img-circle me-2" />
+                    <div class="flex-grow-1">
+                        <b>{{ producto.nombre_comun }}</b><br>
+                        <figcaption class="figure-caption"><b>Nombre científico:</b> {{ producto.nombre_cientifico }}</figcaption>
+                    </div>
+                    <!-- <span class="badge bg-success me-2">{{ producto.id }}</span> -->
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-x-circle"></i></button>
+                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></button>
+                    </div>
+                </label>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center">Mi lista</h1>
+            <div class="list-group shadow-sm mb-5 bg-body rounded">
+            <!--  {% for producto in productos %}
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="{{producto.id}}">
+                    {{ producto.nombre_comun }}
+                </label>
+                {% endfor %} -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptsEnd %}
+<script>
+
+</script>
 {% endblock %}
