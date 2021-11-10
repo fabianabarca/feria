@@ -97,3 +97,6 @@ class Horario(models.Model):
         db_table = 'horarios'
         verbose_name = 'Horario'
         verbose_name_plural = 'Horarios'
+    def __str__(self):
+        return (self.feria.nombre 
+        + " (" + self.dia_inicio + " - " + self.dia_final + ")")
