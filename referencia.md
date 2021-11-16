@@ -1,6 +1,13 @@
 # Especificación de referencia para la base de datos de ferias del agricultor
 
-## Definiciones de términos
+- [Definiciones de términos](#terminos)
+- [Tipos de campos](#tipos)
+- [Definiciones de campos](#definiciones)
+    - [Ferias](#ferias)
+    - [Horarios](#horarios)
+    - [Productos](#productos)
+
+## Definiciones de términos <a name="terminos"></a>
 
 Esta sección define los términos que se utilizan en este documento.
 
@@ -8,11 +15,11 @@ Esta sección define los términos que se utilizan en este documento.
 - **Registro** (*record*): una estructura de datos básica compuesta por varios valores de campo diferentes que describen una sola entidad (por ejemplo, agencia de tránsito, parada, ruta, etc.). Representado, en una tabla, como una fila.
 - **Campo** (*field*): propiedad de un objeto o entidad. Representado, en una tabla, como una columna.
 - Valor de campo (*field value*): una entrada individual en un campo. Representado, en una tabla, como una sola celda.
-- **Obligatorio** (*required*): el campo debe incluirse en el conjunto de datos y debe proporcionarse un valor en ese campo para cada registro. Algunos campos obligatorios permiten una cadena vacía como valor (indicado en esta especificación como vacío). Para ingresar una cadena vacía, simplemente omita cualquier texto entre las comas para ese campo.
-- **Opcional** (*optional*): el campo puede omitirse del conjunto de datos. Si se incluye una columna opcional, algunas de las entradas en ese campo pueden ser cadenas vacías. Para ingresar una cadena vacía, simplemente omita cualquier texto entre las comas para ese campo. Tenga en cuenta que un campo omitido equivale a un campo que está completamente vacío.
+- **Obligatorio** (*required*): el campo debe incluirse en el conjunto de datos y debe proporcionarse un valor en ese campo para cada registro.
+- **Opcional** (*optional*): el campo puede omitirse del conjunto de datos.
 - **Obligatorio condicional** (*conditionally required*): el campo o archivo es obligatorio en determinadas condiciones, que se describen en la descripción del campo o del archivo. Fuera de estas condiciones, este campo o archivo es opcional.
 
-## Tipos de campos
+## Tipos de campos <a name="tipos"></a>
 
 - **Color**: un color codificado como un número hexadecimal de seis dígitos. Consulte https://htmlcolorcodes.com para generar un valor válido (el "#" inicial no está incluido). Ejemplo: FFFFFF para blanco, 000000 para negro o 0039A6.
 - **Código de moneda**: un código de moneda alfabético ISO 4217. Para obtener la lista de la moneda actual, consulte https://en.wikipedia.org/wiki/ISO_4217#Active_codes. Ejemplo: CAD para dólares canadienses, EUR para euros o JPY para yenes japoneses.
@@ -31,6 +38,34 @@ Esta sección define los términos que se utilizan en este documento.
 - **Zona horaria**: zona horaria TZ de https://www.iana.org/time-zones. Los nombres de las zonas horarias nunca contienen el carácter de espacio, pero pueden contener un guión bajo. Consulte http://en.wikipedia.org/wiki/List_of_tz_zones para obtener una lista de valores válidos. Ejemplo: Asia/Tokio, América/Los_Angeles o África/El_Cairo.
 - **URL**: una URL completa que incluye `http://` o `https://`, y cualquier carácter especial en la URL debe tener un escape correcto. Consulte el siguiente http://www.w3.org/Addressing/URL/4_URI_Recommentations.html para obtener una descripción de cómo crear valores de URL completos.
 
-## Definiciones de los campos
+## Definiciones de los campos <a name="definiciones"></a>
 
-### `ferias`
+En la columna "Obligatorio" están las opciones **R** (requerido), **O** (opcional) y **RC** (requerido condicionalmente).
+
+### Ferias <a name="ferias"></a>
+
+Información general básica de cada feria, incluyendo ubicación e infraestructura.
+
+| Campo           | Tipo   | Obligatorio | Descripción                                                                                          |
+|-----------------|--------|-------------|------------------------------------------------------------------------------------------------------|
+| `feria_id`      | ID     | R           | Un identificador de tres letras mayúsculas para la feria. Ejemplo: CUR para la Feria de Curridabat.  |
+| `codigo_url`    | Texto  | R           | Un nombre que será usado en la URL de cada feria. Ejemplo: "zapote" para https://ejemplo.com/zapote. |
+| `nombre`        | Texto  | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
+| `conocido_como` | Texto  | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
+| `provincia`     | Entero | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
+
+### Horarios <a name="horarios"></a>
+
+Tabla de horarios de cada feria.
+
+| Campo         | Tipo   | Obligatorio | Descripción                                                                            |
+|---------------|--------|-------------|----------------------------------------------------------------------------------------|
+| `feria_id`    | ID     | R           | Un ID de la tabla de ferias que indica a cuál corresponde el horario.                  |
+| `dia_inicio`  | Entero | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
+| `hora_inicio` | Hora   | R           | HH:MM                                                                                  |
+| `dia_final`   | Entero | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
+| `hora_final`  | Hora   | R           | HH:MM                                                                                  |
+
+### Productos <a name="productos"></a>
+
+Lista de productos disponibles en las ferias.
