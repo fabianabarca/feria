@@ -17,8 +17,12 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
     queryset = Feria.objects.all()
     serializer_class = FeriaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['provincia', 'canton', 'distrito']
-    search_fields = ['nombre', 'provincia', 'canton', 'distrito']
+    filterset_fields = ['provincia', 'canton', 'distrito',
+                        'horarios__dia_inicio', 'horarios__dia_final',
+                        'horarios__hora_inicio', 'horarios__hora_final']
+    search_fields = ['nombre', 'provincia',
+                     'canton', 'distrito', 'horarios__dia_inicio',
+                     'horarios__dia_final']
 
 
 class FeriaDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):

@@ -19,7 +19,9 @@ class ProductoList(DynamicFieldsViewMixin, generics.ListAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    search_fields = ['nombre_cientifico', 'nombre_comun', 'temporada', 'categoria']
+    filterset_fields = ['temporada', 'categoria']
+    search_fields = ['nombre_cientifico', 'nombre_comun', 'temporada',
+                     'categoria', 'descripcion']
 
 
 class ProductoDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
