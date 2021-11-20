@@ -2,18 +2,17 @@
 # Clases encargadas del API relacionado a Feria
 #
 # Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 9/11/2021
+# Last modified: 20/11/2021
 # ===================================================
 
 from django.http import Http404
-from rest_framework.views import APIView
 from rest_framework.response import Response
-# from rest_framework import status
+from rest_framework import generics
 from ferias.models import Horario
 from api.serializers.horario_serializer import HorarioSerializer
 
 
-class HorarioDetail(APIView):
+class HorarioDetail(generics.RetrieveAPIView):
     ''' Metodos relacionados al modelo Horario dado el ID de la Feria '''
 
     def get_object(self, pk):
