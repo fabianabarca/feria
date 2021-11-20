@@ -44,7 +44,6 @@ class ProductoDetail(APIView):
     def get(self, request, pk):
         '''Conseguir un producto dado su ID (pk)'''
         producto = self.get_object(pk)
-        print(producto)
         serializer = ProductoSerializer(producto)
         return Response(serializer.data)
 

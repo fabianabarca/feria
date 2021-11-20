@@ -46,7 +46,6 @@ class FeriaDetail(APIView):
     def get(self, request, pk):
         '''Conseguir una feria dado su ID (pk)'''
         feria = self.get_object(pk)
-        print(feria)
         serializer = FeriaSerializer(feria)
         return Response(serializer.data)
 

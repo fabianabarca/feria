@@ -26,6 +26,5 @@ class HorarioDetail(APIView):
     def get(self, request, pk):
         '''Conseguir los horario de una Feria dado su ID (pk)'''
         horario = self.get_object(pk)
-        print(horario)
         serializer = HorarioSerializer(horario, many=True)
         return Response(serializer.data)
