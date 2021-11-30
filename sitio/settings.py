@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ferias.apps.FeriaConfig',
     'api.apps.ApiConfig',
     'django_filters',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -135,5 +136,37 @@ STATICFILES_DIRS = (
 
 # REST FRAMEWORK
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Ferias CR API',
+    'DESCRIPTION': 'API of the website Ferias CR',
+    'VERSION': '0.0.1',
+    'TOS': 'https://localhost:8000/policies/terms/',
+    'CONTACT': {
+        'name': 'Fabian Abarca',
+        'email': 'fabian.abarca@ucr.ac.cr',
+        'url': 'ttps://github.com/fabianabarca/ferias/'
+    },
+    'LICENSE': {
+        'name': 'MIT',
+        'url': 'https://github.com/fabianabarca/ferias/blob/main/LICENSE'
+    },
+    # Permitir uso de regex
+    'PREPROCESSING_HOOKS': [
+        'drf_spectacular.hooks.preprocess_exclude_path_format'
+    ],
+    # Sobre escribir Enums que se pueden repetir
+    'ENUM_NAME_OVERRIDES': {
+        'DiaFinalEnum': 'ferias.models.DIAS_SEMANA',
+    },
+    # Quitar sufijo
+    'SCHEMA_PATH_PREFIX': '/api/',
+    # Esconder link o referencia a documento
+    'SERVE_INCLUDE_SCHEMA': False,
 }

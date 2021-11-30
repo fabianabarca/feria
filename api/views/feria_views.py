@@ -2,18 +2,25 @@
 # Clases encargadas del API relacionado a Feria
 #
 # Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 24/11/2021
+# Last modified: 29/11/2021
 # ===================================================
 
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 from ferias.models import Feria
 from api.serializers.feria_serializer import FeriaSerializer
-from api.views.utils import DynamicFieldsViewMixin, FeriasHelper
+from api.views.utils import DynamicFieldsViewMixin, FeriasHelper, optionalParams
 
 
+@extend_schema(
+    summary="ferias/",
+    tags=['Ferias'],
+    parameters=optionalParams)
 class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
-    ''' Retornar una lista con todas las ferias '''
+    '''
+    Get a list with all the Ferias
+    '''
     queryset = Feria.objects.all()
     serializer_class = FeriaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
@@ -49,7 +56,11 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
             return ferias
 
 
+@extend_schema(
+    summary="ferias/{ferias_id}/",
+    tags=['Ferias'],
+    parameters=optionalParams)
 class FeriaDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
-    '''Traer de la base de datos una feria dado su ID (pk)'''
+    ''' Get a specific Feria by their ID (pk)'''
     queryset = Feria.objects.all()
     serializer_class = FeriaSerializer

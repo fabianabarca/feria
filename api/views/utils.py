@@ -2,10 +2,24 @@
 # Clases encargadas que ayudan a las vistas
 #
 # Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 24/11/2021
+# Last modified: 29/11/2021
 # ===================================================
 
 import math
+from drf_spectacular.utils import OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
+
+
+# Parametros opcionales que se desplegaran en algunas vistas
+optionalParams = [
+    OpenApiParameter(
+        name='fields',
+        location=OpenApiParameter.QUERY,
+        description='The fields that will be returned in the response',
+        required=False,
+        type=OpenApiTypes.STR
+    )
+]
 
 
 class FeriasHelper:
