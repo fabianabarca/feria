@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from api.config import DRF_CONFIG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Internationalization
@@ -143,57 +144,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'Ferias CR API',
-    'DESCRIPTION': 'API of the website Ferias CR',
-    'VERSION': '0.0.1',
-    'TOS': 'https://localhost:8000/policies/terms/',
-    'CONTACT': {
-        'name': 'Fabian Abarca',
-        'email': 'fabian.abarca@ucr.ac.cr',
-        'url': 'http://localhost:8000/api/doc/redoc/'
-    },
-    'LICENSE': {
-        'name': 'MIT',
-        'url': 'https://github.com/fabianabarca/ferias/blob/main/LICENSE'
-    },
-    # Permitir uso de regex
-    'PREPROCESSING_HOOKS': [
-        'drf_spectacular.hooks.preprocess_exclude_path_format'
-    ],
-    # Sobre escribir Enums que se pueden repetir
-    'ENUM_NAME_OVERRIDES': {
-        'DiaFinalEnum': 'ferias.models.DIAS_SEMANA',
-    },
-    # Quitar prefijo
-    'SCHEMA_PATH_PREFIX': '/api/',
-    # Esconder link o referencia a documento
-    'SERVE_INCLUDE_SCHEMA': False,
-    # Configuraciones extra https://swagger.io/docs/specification/openapi-extensions/
-    'EXTENSIONS_INFO': {
-        "x-logo": {
-            "url": "https://raw.githubusercontent.com/Redocly/redoc/master/docs/images/redoc.png",
-            "backgroundColor": "#FFFFFF",
-            "altText": "Example logo"
-        }
-    },
-    # Secciones. Las descripciones permiten usar CommonMark https://commonmark.org/help/
-    'TAGS': [
-        {
-            'name': 'Ferias',
-            'description': 'Get data related to Ferias'
-        },
-        {
-            'name': 'Horarios',
-            'description': 'Get data related to Horarios'
-        },
-        {
-            'name': 'Productos',
-            'description': 'Get data related to Productos'
-        },
-        {
-            'name': 'About',
-            'description': 'Ejemplo de descripcion \n## This is a description.'
-        },
-    ]
-}
+SPECTACULAR_SETTINGS = DRF_CONFIG

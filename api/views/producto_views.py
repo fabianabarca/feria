@@ -12,15 +12,19 @@ from ferias.models import Producto
 from api.serializers.producto_serializer import ProductoSerializer
 from api.views.utils import DynamicFieldsViewMixin
 from api.docs.params.parameters import optional_params
+from api.docs.params.productos import productos_params
 
 
 @extend_schema(
     summary="productos/",
     tags=['Productos'],
-    parameters=optional_params)
+    parameters=optional_params+productos_params)
 class ProductoList(DynamicFieldsViewMixin, generics.ListAPIView):
     '''
-    Return a list with all products
+    Get a list with all the Productos. Some of the query parameters
+    are used to filter the list. For example if we need to get
+    the Productos given the `categoria` we put in the query the
+    param: `?categoria=1`
     '''
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
@@ -32,7 +36,8 @@ class ProductoList(DynamicFieldsViewMixin, generics.ListAPIView):
 
 @extend_schema(
     summary="productos/{id}/",
-    tags=['Productos'])
+    tags=['Productos'],
+    parameters=optional_params)
 class ProductoDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
     '''
     Get a specific Producto by their ID (pk)

@@ -11,6 +11,7 @@ from rest_framework import generics
 from drf_spectacular.utils import extend_schema
 from ferias.models import Horario
 from api.serializers.horario_serializer import HorarioSerializer
+from api.docs.params.horarios import horarios_params
 
 
 class HorarioDetail(generics.RetrieveAPIView):
@@ -28,7 +29,8 @@ class HorarioDetail(generics.RetrieveAPIView):
 
     @extend_schema(
         summary="horarios/{id}/",
-        tags=['Horarios'])
+        tags=['Horarios'],
+        parameters=horarios_params)
     def get(self, request, pk):
         '''
         Get the Horarios (fair hours) of a specific Feria by their ID (pk)

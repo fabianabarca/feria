@@ -27,50 +27,10 @@ optional_params = [
             ),
             OpenApiExample(
                 'Example 2: Get specific fields',
-                summary='Get the object with only the field specific fields',
+                summary='Get the object with only the specific fields',
                 description='Get a response that only return the specific',
                 value='?fields=Nombre,Descripcion,Id,...'
             )
         ]
-    )
-]
-
-# Parametros opcionales de coordenadas relacionadas a las Ferias
-
-coord_param = [
-    OpenApiParameter(
-        name='lat',
-        location=OpenApiParameter.QUERY,
-        description='Latitude of the user. Use with `lon` and `radius` to get '
-        + 'Ferias given the geolocation that the user pass.',
-        required=False,
-        type=OpenApiTypes.FLOAT
-    ),
-    OpenApiParameter(
-        name='lon',
-        location=OpenApiParameter.QUERY,
-        description='Longitude of the user. Use with `lat` and `radius` to get'
-        + ' Ferias given the geolocation that the user pass.',
-        required=False,
-        type=OpenApiTypes.FLOAT
-    ),
-    OpenApiParameter(
-        name='radius',
-        location=OpenApiParameter.QUERY,
-        description='Radius of the search in meters. Use with `lon` and `lat` '
-        + 'to get Ferias given the geolocation that the user pass.',
-        required=False,
-        type=OpenApiTypes.INT
-    ),
-]
-
-# Examples Ferias
-
-examples_ferias = [
-    OpenApiExample(
-        name='Example Get Feria',
-        description='Get a list of all Ferias',
-        media_type='application/json',
-        status_codes=['200']
     )
 ]

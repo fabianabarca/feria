@@ -11,16 +11,20 @@ from drf_spectacular.utils import extend_schema
 from ferias.models import Feria
 from api.serializers.feria_serializer import FeriaSerializer
 from api.views.utils import DynamicFieldsViewMixin, FeriasHelper
-from api.docs.params.parameters import optional_params, coord_param
+from api.docs.params.parameters import optional_params
+from api.docs.params.ferias import ferias_params
 
 
 @extend_schema(
     summary="ferias/",
     tags=['Ferias'],
-    parameters=optional_params+coord_param,)
+    parameters=optional_params+ferias_params,)
 class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
     '''
-    Get a list with all the Ferias
+    Get a list with all the Ferias. Some of the query parameters
+    are used to filter the list. For example if we need to get
+    the Ferias given the `provincia` we put in the query the
+    param: `?provincia=1`
     '''
     queryset = Feria.objects.all()
     serializer_class = FeriaSerializer
