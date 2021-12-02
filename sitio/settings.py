@@ -151,7 +151,7 @@ SPECTACULAR_SETTINGS = {
     'CONTACT': {
         'name': 'Fabian Abarca',
         'email': 'fabian.abarca@ucr.ac.cr',
-        'url': 'ttps://github.com/fabianabarca/ferias/'
+        'url': 'http://localhost:8000/api/doc/redoc/'
     },
     'LICENSE': {
         'name': 'MIT',
@@ -165,8 +165,35 @@ SPECTACULAR_SETTINGS = {
     'ENUM_NAME_OVERRIDES': {
         'DiaFinalEnum': 'ferias.models.DIAS_SEMANA',
     },
-    # Quitar sufijo
+    # Quitar prefijo
     'SCHEMA_PATH_PREFIX': '/api/',
     # Esconder link o referencia a documento
     'SERVE_INCLUDE_SCHEMA': False,
+    # Configuraciones extra https://swagger.io/docs/specification/openapi-extensions/
+    'EXTENSIONS_INFO': {
+        "x-logo": {
+            "url": "https://raw.githubusercontent.com/Redocly/redoc/master/docs/images/redoc.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Example logo"
+        }
+    },
+    # Secciones. Las descripciones permiten usar CommonMark https://commonmark.org/help/
+    'TAGS': [
+        {
+            'name': 'Ferias',
+            'description': 'Get data related to Ferias'
+        },
+        {
+            'name': 'Horarios',
+            'description': 'Get data related to Horarios'
+        },
+        {
+            'name': 'Productos',
+            'description': 'Get data related to Productos'
+        },
+        {
+            'name': 'About',
+            'description': 'Ejemplo de descripcion \n## This is a description.'
+        },
+    ]
 }

@@ -10,13 +10,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from ferias.models import Feria
 from api.serializers.feria_serializer import FeriaSerializer
-from api.views.utils import DynamicFieldsViewMixin, FeriasHelper, optionalParams
+from api.views.utils import DynamicFieldsViewMixin, FeriasHelper
+from api.docs.params.parameters import optional_params, coord_param
 
 
 @extend_schema(
     summary="ferias/",
     tags=['Ferias'],
-    parameters=optionalParams)
+    parameters=optional_params+coord_param,)
 class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
     '''
     Get a list with all the Ferias
@@ -59,7 +60,7 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
 @extend_schema(
     summary="ferias/{ferias_id}/",
     tags=['Ferias'],
-    parameters=optionalParams)
+    parameters=optional_params)
 class FeriaDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
     ''' Get a specific Feria by their ID (pk)'''
     queryset = Feria.objects.all()

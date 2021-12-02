@@ -10,13 +10,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from ferias.models import Producto
 from api.serializers.producto_serializer import ProductoSerializer
-from api.views.utils import DynamicFieldsViewMixin, optionalParams
+from api.views.utils import DynamicFieldsViewMixin
+from api.docs.params.parameters import optional_params
 
 
 @extend_schema(
     summary="productos/",
     tags=['Productos'],
-    parameters=optionalParams)
+    parameters=optional_params)
 class ProductoList(DynamicFieldsViewMixin, generics.ListAPIView):
     '''
     Return a list with all products
@@ -31,8 +32,7 @@ class ProductoList(DynamicFieldsViewMixin, generics.ListAPIView):
 
 @extend_schema(
     summary="productos/{id}/",
-    tags=['Productos'],
-    parameters=optionalParams)
+    tags=['Productos'])
 class ProductoDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
     '''
     Get a specific Producto by their ID (pk)
