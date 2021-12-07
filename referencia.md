@@ -76,3 +76,4 @@ Lista de productos disponibles en las ferias.
 
 - La canasta básica refleja el comportamiento de consumo costarricense, no sus necesidades nutricionales https://www.ucr.ac.cr/noticias/2021/04/28/la-canasta-basica-refleja-el-comportamiento-de-consumo-costarricense-no-sus-necesidades-nutricionales.html
 - UCR resguarda cultivos para el futuro agrícola https://accionsocial.ucr.ac.cr/noticias/ucr-resguarda-cultivos-para-el-futuro-agricola
+- ExpoNutrición http://exponutricion.ucr.ac.cr/
