@@ -6,6 +6,7 @@
     - [Ferias](#ferias)
     - [Horarios](#horarios)
     - [Productos](#productos)
+    - [Fotos](#fotos)
 
 ## Definiciones de términos <a name="terminos"></a>
 
@@ -53,6 +54,7 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `nombre`        | Texto  | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
 | `conocido_como` | Texto  | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
 | `provincia`     | Entero | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
+| `estacionamiento`     | Entero | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.     |
 
 ### Horarios <a name="horarios"></a>
 
@@ -69,6 +71,19 @@ Tabla de horarios de cada feria.
 ### Productos <a name="productos"></a>
 
 Lista de productos disponibles en las ferias.
+
+### Fotos <a name="fotos"></a>
+
+Fotos de la feria.
+
+| Campo         | Tipo   | Obligatorio | Descripción                                                                            |
+|---------------|--------|-------------|----------------------------------------------------------------------------------------|
+| `foto_id`     | ID     | R           | Un ID de la tabla de ferias que indica a cuál corresponde el horario.                  |
+| `feria_id`    | ID     | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
+| `descripcion` | Texto  | R           | HH:MM                                                                                  |
+| `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
+| `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
+| `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
 
 # Lista de referencias importantes
 
