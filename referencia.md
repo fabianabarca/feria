@@ -47,14 +47,17 @@ En la columna "Obligatorio" están las opciones **R** (requerido), **O** (opcion
 
 Información general básica de cada feria, incluyendo ubicación e infraestructura.
 
-| Campo           | Tipo   | Obligatorio | Descripción                                                                                          |
-|-----------------|--------|-------------|------------------------------------------------------------------------------------------------------|
-| `feria_id`      | ID     | R           | Un identificador de tres letras mayúsculas para la feria. Ejemplo: CUR para la Feria de Curridabat.  |
-| `codigo_url`    | Texto  | R           | Un nombre que será usado en la URL de cada feria. Ejemplo: "zapote" para https://ejemplo.com/zapote. |
-| `nombre`        | Texto  | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
-| `conocido_como` | Texto  | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
-| `provincia`     | Entero | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
-| `estacionamiento`     | Entero | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.     |
+| Campo             | Tipo   | Obligatorio | Descripción                                                                                          |
+|-------------------|--------|-------------|------------------------------------------------------------------------------------------------------|
+| `feria_id`        | ID     | R           | Un identificador de tres letras mayúsculas para la feria. Ejemplo: CUR para la Feria de Curridabat.  |
+| `codigo_url`      | Texto  | R           | Un nombre que será usado en la URL de cada feria. Ejemplo: "zapote" para https://ejemplo.com/zapote. |
+| `nombre`          | Texto  | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
+| `conocido_como`   | Texto  | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
+| `comite`          | Texto  | O           | Nombre del comite regional correspondiente a cada feria. Ejemplo: ---------.                         |
+| `administrador`   | Texto  | R           | Nombre del ente local administrador de la feria. Ejemplo: ----------.                                |
+| `telefono`        | String | R           | Número de telefono del representante del ente local administrador de la feria. Ejemplo: ------.      |
+| `provincia`       | Entero | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
+| `estacionamiento` | Entero | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.     |
 
 ### Horarios <a name="horarios"></a>
 
@@ -68,10 +71,6 @@ Tabla de horarios de cada feria.
 | `dia_final`   | Entero | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `hora_final`  | Hora   | R           | HH:MM                                                                                  |
 
-### Productos <a name="productos"></a>
-
-Lista de productos disponibles en las ferias.
-
 ### Fotos <a name="fotos"></a>
 
 Fotos de la feria.
@@ -84,6 +83,10 @@ Fotos de la feria.
 | `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
 | `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
+
+### Productos <a name="productos"></a>
+
+Lista de productos disponibles en las ferias.
 
 # Lista de referencias importantes
 
