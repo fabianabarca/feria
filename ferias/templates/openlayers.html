@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Prueba OpenLayers{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="map" class="map"></div>
+{% endblock %}
+
+
+{% block scriptsEnd %}
+<script type="text/javascript">
+    var point = new ol.geom.Point(
+        ol.proj.transform({{coords_cr}},'EPSG:4326', 'EPSG:3857')
+    );
+    var circle = new ol.geom.Circle(
+        ol.proj.transform({{coords_cr}}, 'EPSG:4326', 'EPSG:3857'),
+        {{radio}}
+    );
+
+    // Features
+    var pointFeature = new ol.Feature(point);
+    var circleFeature = new ol.Feature(circle);
+
+    // Source
+    var vectorSource = new ol.source.Vector({
+        projection: 'EPSG:4326'
+    });
+    vectorSource.addFeatures([pointFeature, circleFeature]);
+
+    // Vector layer
+    var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+    });
+
+      var map = new ol.Map({
+        target: 'map',
+        layers: [    
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat({{coords_cr}}),
+          zoom: {{zoom}}
+        })
+      });
+
+      map.addLayer(vectorLayer);
+      {% comment %} http://live.osgeo.org/es/quickstart/openlayers_quickstart.html {% endcomment %}
+      map.on('singleclick', function(event) {
+        var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+
+        console.log(coord4326);
+        });
+</script>
+{% endblock %}
