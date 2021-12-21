@@ -1,3 +1,6 @@
+''' Acá se crean los modelos base de las Ferias, junto con toda la información
+    relevante de ellas '''
+
 from django.db import models
 
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
@@ -54,7 +57,7 @@ class Producto(models.Model):
         verbose_name_plural = 'Productos'
 
     def __str__(self):
-        return (self.nombre_comun)
+        return self.nombre_comun
 
 
 class Feria(models.Model):
@@ -79,14 +82,15 @@ class Feria(models.Model):
         verbose_name_plural = 'Ferias del Agricultor'
 
     def __str__(self):
-        return (self.nombre + ", " + self.distrito)
+        return self.nombre + ", " + self.distrito
 
 
 class Horario(models.Model):
     ''' Horarios de las diferentes ferias, relaciona un miembro del modelo
         Ferias con un día y hora de inicio y un día y hora final '''
 
-    feria = models.ForeignKey(Feria, on_delete=models.DO_NOTHING)
+    feria = models.ForeignKey(to=Feria, related_name="horarios",
+                              on_delete=models.DO_NOTHING)
     dia_inicio = models.CharField(max_length=1, choices=DIAS_SEMANA)
     hora_inicio = models.TimeField()
     dia_final = models.CharField(max_length=1, choices=DIAS_SEMANA)
@@ -97,3 +101,7 @@ class Horario(models.Model):
         db_table = 'horarios'
         verbose_name = 'Horario'
         verbose_name_plural = 'Horarios'
+
+    def __str__(self):
+        return (self.feria.nombre
+                + " (" + self.dia_inicio + " - " + self.dia_final + ")")

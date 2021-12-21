@@ -12,7 +12,7 @@ class FeriaAdmin(admin.ModelAdmin):
 
 
 class HorarioAdmin(admin.ModelAdmin):
-    search_fields = ['feria']
+    search_fields = ['feria__nombre']
     list_filter = ['dia_inicio', 'dia_final']
     form = HorarioForm
 
