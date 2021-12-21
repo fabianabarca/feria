@@ -3,6 +3,9 @@
 
 from django.db import models
 
+''' Acá se crean los modelos base de las Ferias, junto con toda la información
+    relevante de ellas '''
+
 PROVINCIAS = (
     (0, 'San José'),
     (1, 'Alajuela'),
@@ -31,10 +34,8 @@ CATEGORIAS_PRODUCTOS = (
     (5, 'Otros')
 )
 
-
 def path_producto(instance, filename):
     return 'producto/{}/{}'.format(instance.nombre_comun, filename)
-
 
 class Producto(models.Model):
     ''' Modelo de un producto, contiene información básica de los diferentes
