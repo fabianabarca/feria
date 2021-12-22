@@ -9,11 +9,127 @@
 {% endblock %}
 
 {% block content %}
-Lista de ferias
-<ul>
-{% for feria in ferias %}
-<li>{{ feria.nombre }}</li>
-{% endfor %}
-</ul>
+<div class="container">
+    <div class="row">
+        <div id="filters" class="col-md-4">
+            <form id="buscador" class="form-inline" method="get" action="/ferias">
+                <div class="form-group">
+                    <label for="search">Buscar feria</label>
+                    <input type="text" class="form-control" id="search" aria-describedby="searchHelp"
+                        placeholder="Busque una feria" name="search">
+                    <small id="searchHelp" class="form-text text-muted">Se buscará por Nombre o Comite.</small>
+                    <button type="submit" class="btn btn-primary mb-2" value="submit">Buscar</button>
+                </div>
+                <small>Filtrar</small><br>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="parqueo" value="1" name="parqueo" disabled>
+                    <label class="form-check-label" for="parqueo">Parqueo</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias con parqueo"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="parqueo_bici" value="1" name="parqueo_bici" disabled>
+                    <label class="form-check-label" for="parqueo_bici">Parqueo Bicicletas</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias con parqueo para bicicletas"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="sanitarios" value="1" name="sanitarios" disabled>
+                    <label class="form-check-label" for="sanitarios">Servicios Sanitarios</label>
+                    <i class="bi bi-info-circle"  data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias con servicios sanitarios"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="bajo_techo" value="1" name="bajo_techo" disabled>
+                    <label class="form-check-label" for="bajo_techo">Bajo Techo</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias que esten bajo techo"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="campo_ferial" value="1" name="campo_ferial" disabled>
+                    <label class="form-check-label" for="campo_ferial">Campo Ferial</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias que esten en un campo ferial"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="agua_potable" value="1" name="agua_potable" disabled>
+                    <label class="form-check-label" for="agua_potable">Agua Potable</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias que cuenten con agua potable"></i>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" id="accesibilidad" value="1" name="accesibilidad" disabled>
+                    <label class="form-check-label" for="accesibilidad">Accesibilidad</label>
+                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" 
+                        title="Buscar ferias que cumplan la ley 7600"></i>
+                </div>
+                <div id="demo"></div>
+                <input type="text" id="lat" name="lat" hidden/>
+                <input type="text" id="lon" name="lon" hidden/>
+                <div style="display: none;" id="radiusGroup">
+                    <label for="radius" class="form-label">
+                        Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
+                    </label>
+                    <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
+                        onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
+                </div>
+            </form>
+            <button class="btn btn-primary sm" onclick="getLocation();">Usar mi ubicación</button>
+        </div>
+        <div id="ferias-list" class="col-md-8">
+                Lista de ferias
+                <div> 
+                    {% if ferias.count > 0 %}
+                    <ul>
+                        {% for feria in ferias %}
+                        <li>{{ feria.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h4>No se encontraron ferias</h4>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptsEnd %}
+<script>
+    const myForm = document.getElementById('buscador');
+    const lat = document.getElementById('lat');
+    const lon = document.getElementById('lon');
+    const radius = document.getElementById('radius');
+    myForm.addEventListener('submit', function () {
+        var allInputs = myForm.getElementsByTagName('input');
+        for (var i = 0; i < allInputs.length; i++) {
+            var input = allInputs[i];
+            if (input.name && !input.value) {
+                input.name = '';
+            }
+        }
+        if(lat.value === '' || lon.value === ''){
+            radius.name = '';
+        }
+    });
+    var x = document.getElementById("demo");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Este navegador no soporta geolocalización.";
+            alert("Este navegador no soporta geolocalización.");
+        }
+    }
 
+    function showPosition(position) {        
+        lat.value = position.coords.latitude;
+        lon.value = position.coords.longitude;
+        radius.value = 1000;
+        document.getElementById('radiusGroup').style.display = 'block';
+    }
+
+    function updateRadiusInput(val) {
+        document.getElementById('radioText').innerText = val / 1000;
+    }
+</script>
 {% endblock %}
