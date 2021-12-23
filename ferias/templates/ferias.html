@@ -19,6 +19,7 @@
                         placeholder="Busque una feria" name="search">
                     <small id="searchHelp" class="form-text text-muted">Se buscará por Nombre o Comite.</small>
                     <button type="submit" class="btn btn-primary mb-2" value="submit">Buscar</button>
+                    <button type="submit" class="btn btn-secondary mb-2" onclick="limpiarFiltros();">Limpiar filtros</button>
                 </div>
                 <small>Filtrar</small><br>
                 <div class="form-check ">
@@ -79,12 +80,53 @@
         <div id="ferias-list" class="col-md-8">
                 Lista de ferias
                 <div> 
-                    {% if ferias.count > 0 %}
+                    {% if ferias.object_list.count > 0 %}
                     <ul>
                         {% for feria in ferias %}
                         <li>{{ feria.nombre }}</li>
                         {% endfor %}
                     </ul>
+                    <!-- Paginacion -->
+                    {% if ferias.has_other_pages %}
+                    <nav aria-label="Paginación de la lista de ferias">
+                        <ul class="pagination justify-content-center">
+                            <!-- Boton de previo -->
+                            {% if ferias.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="getPage({{ ferias.previous_page_number }});">Anterior</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" arias-disabled="True">Anterior</a>
+                            </li>
+                            {% endif %}
+
+                            <!-- Paginas disponibles -->
+                            {% for i in ferias.paginator.page_range %}
+                            {% if ferias.number == i %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">
+                                    {{ i }}
+                                </span>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="#" onclick="getPage({{ i }});">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            <!-- Boton de siguiente -->
+                            {% if ferias.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="getPage({{ ferias.next_page_number }});">Siguiente</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" arias-disabled="True">Siguiente</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
                     {% else %}
                     <h4>No se encontraron ferias</h4>
                     {% endif %}
@@ -94,11 +136,36 @@
 </div>
 {% endblock %}
 {% block scriptsEnd %}
-<script>
-    const myForm = document.getElementById('buscador');
+<script>    
     const lat = document.getElementById('lat');
     const lon = document.getElementById('lon');
-    const radius = document.getElementById('radius');
+    const radius = document.getElementById('radius');    
+    const myForm = document.getElementById('buscador');
+
+    /***
+     *  Cambiar valores de los filtros segun los parametros
+     *  del URL
+     **/
+    function SetParamsFromQuery() {
+        var params = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+            params[key] = value;
+        });
+        var allInputs = myForm.getElementsByTagName('input');
+        for (var i = 0; i < allInputs.length; i++) {
+            var input = allInputs[i];
+            if (params[input.name] !== undefined) {
+                input.value = params[input.name];
+            }
+            if (lat.value !== '' || lon.value !== '') {
+                document.getElementById('radiusGroup').style.display = 'block';
+            }
+        }
+    }
+    SetParamsFromQuery();
+    /***
+     *  Funcion para no enviar parametros vacios
+     **/
     myForm.addEventListener('submit', function () {
         var allInputs = myForm.getElementsByTagName('input');
         for (var i = 0; i < allInputs.length; i++) {
@@ -111,7 +178,11 @@
             radius.name = '';
         }
     });
+
     var x = document.getElementById("demo");
+    /***
+     *  Funcion conseguir la posicion geografica
+     **/
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -128,8 +199,31 @@
         document.getElementById('radiusGroup').style.display = 'block';
     }
 
+    /***
+     *  Actualizar el valor del radio.
+     **/
     function updateRadiusInput(val) {
         document.getElementById('radioText').innerText = val / 1000;
+    }
+    /**
+     * Agregar al url la pagina de los resultados. 
+     * Y abrir el enlace.
+     **/
+    function getPage(page) {
+        let url = new URL(window.location.href);
+        url.searchParams.set('page', page);
+        console.log(url);
+        window.open(url.href, "_self");
+    }
+
+    function limpiarFiltros() {
+        var allInputs = myForm.getElementsByTagName('input');
+        for (var i = 0; i < allInputs.length; i++) {
+            var input = allInputs[i];
+            if (input.name !== 'search') {
+                input.name = '';
+            }
+        }
     }
 </script>
 {% endblock %}

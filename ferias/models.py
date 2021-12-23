@@ -80,6 +80,7 @@ class Feria(models.Model):
         db_table = 'ferias'
         verbose_name = 'Feria del Agricultor'
         verbose_name_plural = 'Ferias del Agricultor'
+        ordering = ['nombre']
 
     def __str__(self):
         return self.nombre + ", " + self.distrito

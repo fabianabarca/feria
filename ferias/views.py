@@ -1,5 +1,6 @@
 import math
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -78,8 +79,11 @@ def ferias(request):
                 # Agregar ID de la feria
                 ferias_id_filtered.insert(index, feria.ferias_id)
                 index = index + 1
-            # Filtrar las ferias que esten es el radio dado
-            print(ferias_id_filtered)
+        # Filtrar las ferias que esten es el radio dado          
         ferias = ferias.filter(ferias_id__in=ferias_id_filtered)
-    context = {'ferias': ferias}
+    # Paginación
+    paginator = Paginator(ferias, 1)
+    page_number = request.GET.get('page') if 'page' in request.GET else 1
+    ferias_paged = paginator.get_page(page_number)
+    context = {'ferias': ferias_paged}
     return render(request, 'ferias.html', context)
