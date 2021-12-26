@@ -1,9 +1,11 @@
 import math
+import os
+import json
+from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from ferias.models import Feria
 
 
@@ -85,5 +87,14 @@ def ferias(request):
     paginator = Paginator(ferias, 1)
     page_number = request.GET.get('page') if 'page' in request.GET else 1
     ferias_paged = paginator.get_page(page_number)
-    context = {'ferias': ferias_paged}
+
+    # Provincias, Cantones, Distritos
+    distribucion_cr = {}
+    with open(os.path.join(settings.BASE_DIR, 'static/data/cr_distribucion.json')) as json_file:
+        distribucion_cr = json.load(json_file)
+
+    context = {
+        'ferias': ferias_paged,
+        'distribucion': distribucion_cr
+        }
     return render(request, 'ferias.html', context)

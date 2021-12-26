@@ -21,14 +21,17 @@
     {% endblock %}
 
 <!-- Scripts -->
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<!-- Habilitar Tooltips -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 <script>
+    // Habilitar Tooltips
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    }); 
+    // Variable global para que los archivo .js puedan acceder al directorio de archivos estaticos (static)
+    var base_url = "{% get_static_prefix %}"; 
 </script>
 {% block scriptsEnd %}
 {% endblock %}

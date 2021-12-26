@@ -74,6 +74,15 @@
                     <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
                         onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
                 </div>
+                <select class="form-select" aria-label="Provincia" name="provincia" id="provincia">
+                    <option selected value="-1">Seleccione una provincia</option>                    
+                </select>
+                <select class="form-select" aria-label="Cantón" name="canton" id="canton">
+                    <option selected value="-1">Seleccione un cantón</option>
+                </select>
+                <select class="form-select" aria-label="Distrito" name="distrito" id="distrito">
+                    <option selected value="-1">Seleccione un distrito</option>
+                </select>
             </form>
             <button class="btn btn-primary sm" onclick="getLocation();">Usar mi ubicación</button>
         </div>
@@ -136,94 +145,5 @@
 </div>
 {% endblock %}
 {% block scriptsEnd %}
-<script>    
-    const lat = document.getElementById('lat');
-    const lon = document.getElementById('lon');
-    const radius = document.getElementById('radius');    
-    const myForm = document.getElementById('buscador');
-
-    /***
-     *  Cambiar valores de los filtros segun los parametros
-     *  del URL
-     **/
-    function SetParamsFromQuery() {
-        var params = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-            params[key] = value;
-        });
-        var allInputs = myForm.getElementsByTagName('input');
-        for (var i = 0; i < allInputs.length; i++) {
-            var input = allInputs[i];
-            if (params[input.name] !== undefined) {
-                input.value = params[input.name];
-            }
-            if (lat.value !== '' || lon.value !== '') {
-                document.getElementById('radiusGroup').style.display = 'block';
-            }
-        }
-    }
-    SetParamsFromQuery();
-    /***
-     *  Funcion para no enviar parametros vacios
-     **/
-    myForm.addEventListener('submit', function () {
-        var allInputs = myForm.getElementsByTagName('input');
-        for (var i = 0; i < allInputs.length; i++) {
-            var input = allInputs[i];
-            if (input.name && !input.value) {
-                input.name = '';
-            }
-        }
-        if(lat.value === '' || lon.value === ''){
-            radius.name = '';
-        }
-    });
-
-    var x = document.getElementById("demo");
-    /***
-     *  Funcion conseguir la posicion geografica
-     **/
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Este navegador no soporta geolocalización.";
-            alert("Este navegador no soporta geolocalización.");
-        }
-    }
-
-    function showPosition(position) {        
-        lat.value = position.coords.latitude;
-        lon.value = position.coords.longitude;
-        radius.value = 1000;
-        document.getElementById('radiusGroup').style.display = 'block';
-    }
-
-    /***
-     *  Actualizar el valor del radio.
-     **/
-    function updateRadiusInput(val) {
-        document.getElementById('radioText').innerText = val / 1000;
-    }
-    /**
-     * Agregar al url la pagina de los resultados. 
-     * Y abrir el enlace.
-     **/
-    function getPage(page) {
-        let url = new URL(window.location.href);
-        url.searchParams.set('page', page);
-        console.log(url);
-        window.open(url.href, "_self");
-    }
-
-    function limpiarFiltros() {
-        var allInputs = myForm.getElementsByTagName('input');
-        for (var i = 0; i < allInputs.length; i++) {
-            var input = allInputs[i];
-            if (input.name !== 'search') {
-                input.name = '';
-            }
-        }
-    }
-</script>
+<script src="{% static 'js/ferias.js' %}" type="text/javascript"></script>
 {% endblock %}
