@@ -13,6 +13,9 @@ const cantonSelect = document.getElementById('canton');
 const distritoSelect = document.getElementById('distrito');
 var distribucion_cr = {};
 var currentProvincia = 0;
+var totalFilters = 0;
+var filtersUbicacionCount = 0;
+var filtersComodidadesCount = 0;
 
 provinciaSelect.addEventListener('change', (event) => getCantones(event.target.value));
 cantonSelect.addEventListener('change', (event) => getDistritos(event.target.value));
@@ -123,22 +126,39 @@ function setParamsFromQuery() {
         var input = allInputs[i];
         if (params[input.name] !== undefined) {
             input.value = params[input.name];
+            filtersComodidadesCount++;
         }
         if (lat.value !== '' || lon.value !== '') {
             document.getElementById('radiusGroup').style.display = 'block';
         }
     }
     if (params['provincia'] !== undefined){
-        provinciaSelect.value = params['provincia'];
+        provinciaSelect.value = decodeURIComponent(params['provincia']);
+        getCantones(provinciaSelect.value);
+        filtersUbicacionCount++;
     }
     if (params['canton'] !== undefined) {
         getCantones(provinciaSelect.value);
-        cantonSelect.value = params['canton'];
+        cantonSelect.value = decodeURIComponent(params['canton']).replaceAll('+', ' ');
+        console.log(cantonSelect.value);
         getDistritos(cantonSelect.value);
+        filtersUbicacionCount++;
     }
     if (params['distrito'] !== undefined) {
         getDistritos(cantonSelect.value);
-        distritoSelect.value = params['distrito'];
+        distritoSelect.value = decodeURIComponent(params['distrito']).replaceAll('+', ' ');
+        filtersUbicacionCount++;
+    }
+    if(filtersComodidadesCount > 0){
+        document.getElementById('badge-comodidades').innerHTML = filtersComodidadesCount;
+        totalFilters += filtersComodidadesCount;
+    }
+    if (filtersUbicacionCount > 0) {
+        document.getElementById('badge-ubicacion').innerHTML = filtersUbicacionCount;
+        totalFilters += filtersUbicacionCount;
+    }
+    if(totalFilters > 0){
+        document.getElementById('badge-filtros').innerHTML = totalFilters;
     }
 }
 
