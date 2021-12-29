@@ -126,10 +126,14 @@ function setParamsFromQuery() {
         var input = allInputs[i];
         if (params[input.name] !== undefined) {
             input.value = params[input.name];
-            filtersComodidadesCount++;
+            if (input.name !== "lat" && input.name !== "lon" && input.name !== "radius")
+            {
+                filtersComodidadesCount++;
+            }
         }
-        if (lat.value !== '' || lon.value !== '') {
+        if (lat.value !== '' && lon.value !== '' && radius.value !== '') {
             document.getElementById('radiusGroup').style.display = 'block';
+            document.getElementById('radioText').innerHTML = radius.value / 1000;
         }
     }
     if (params['provincia'] !== undefined){
@@ -242,4 +246,15 @@ function limpiarFiltros() {
     for (var i = 0; i < allSelects.length; i++) {
         allSelects[i].name = '';
     }
+}
+
+/**
+ * Hacer una búsqueda normal sin los parametros de
+ * geolocalización.
+ */
+function normalSearch() {
+    lat.name = '';
+    lon.name = '';
+    radius.name = '';
+    myForm.submit();
 }
