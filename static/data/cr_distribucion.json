@@ -1,0 +1,931 @@
+[
+    {
+        "nombre": "San Jos\u00e9",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Carmen",
+                    "Merced",
+                    "Hospital",
+                    "Catedral",
+                    "Zapote",
+                    "San Francisco De Dos Rios",
+                    "Uruca",
+                    "Mata Redonda",
+                    "Pavas",
+                    "Hatillo",
+                    "San Sebasti\u00e1n"
+                ]
+            },
+            {
+                "nombre": "Escaz\u00fa",
+                "distritos": [
+                    "Escaz\u00fa",
+                    "San Antonio",
+                    "San Rafael"
+                ]
+            },
+            {
+                "nombre": "Desamparados",
+                "distritos": [
+                    "Desamparados",
+                    "San Miguel",
+                    "San Juan De Dios",
+                    "San Rafael Arriba",
+                    "San Rafael Abajo",
+                    "San Antonio",
+                    "Frailes",
+                    "Patarra",
+                    "San Cristobal",
+                    "Rosario",
+                    "Damas",
+                    "Gravilias",
+                    "Los Guido"
+                ]
+            },
+            {
+                "nombre": "Puriscal",
+                "distritos": [
+                    "Santiago",
+                    "Mercedes Sur",
+                    "Barbacoas",
+                    "Grifo Alto",
+                    "San Rafael",
+                    "Candelarita",
+                    "Desamparaditos",
+                    "San Antonio",
+                    "Chires"
+                ]
+            },
+            {
+                "nombre": "Tarraz\u00fa",
+                "distritos": [
+                    "San Marcos",
+                    "San Lorenzo",
+                    "San Carlos"
+                ]
+            },
+            {
+                "nombre": "Aserr\u00ed",
+                "distritos": [
+                    "Aserr\u00ed",
+                    "Tarbaca",
+                    "Vuelta De Jorco",
+                    "San Gabriel",
+                    "Legua",
+                    "Monterrey",
+                    "Salitrillos"
+                ]
+            },
+            {
+                "nombre": "Mora",
+                "distritos": [
+                    "Col\u00f3n",
+                    "Guayabo",
+                    "Tabarcia",
+                    "Piedras Negras",
+                    "Picagres",
+                    "Jaris"
+                ]
+            },
+            {
+                "nombre": "Goicoechea",
+                "distritos": [
+                    "Guadalupe",
+                    "San Francisco",
+                    "Calle Blancos",
+                    "Mata De Platano",
+                    "Ip\u00eds",
+                    "Rancho Redondo",
+                    "Purral"
+                ]
+            },
+            {
+                "nombre": "Santa Ana",
+                "distritos": [
+                    "Santa Ana",
+                    "Salitral",
+                    "Pozos",
+                    "Uruca",
+                    "Piedades",
+                    "Brasil"
+                ]
+            },
+            {
+                "nombre": "Alajuelita",
+                "distritos": [
+                    "Alajuelita",
+                    "San Josecito",
+                    "San Antonio",
+                    "Concepci\u00f3n",
+                    "San Felipe"
+                ]
+            },
+            {
+                "nombre": "V\u00e1zquez De Coronado",
+                "distritos": [
+                    "San Isidro",
+                    "San Rafael",
+                    "Dulce Nombre De Jesus",
+                    "Patalillo",
+                    "Cascajal"
+                ]
+            },
+            {
+                "nombre": "Acosta",
+                "distritos": [
+                    "San Ignacio",
+                    "Guaitil",
+                    "Palmichal",
+                    "Cangrejal",
+                    "Sabanillas"
+                ]
+            },
+            {
+                "nombre": "Tib\u00e1s",
+                "distritos": [
+                    "San Juan",
+                    "Cinco Esquinas",
+                    "Anselmo Llorente",
+                    "Leon Xiii",
+                    "Colima"
+                ]
+            },
+            {
+                "nombre": "Moravia",
+                "distritos": [
+                    "San Vicente",
+                    "San Jeronimo",
+                    "La Trinidad"
+                ]
+            },
+            {
+                "nombre": "Montes De Oca",
+                "distritos": [
+                    "San Pedro",
+                    "Sabanilla",
+                    "Mercedes",
+                    "San Rafael"
+                ]
+            },
+            {
+                "nombre": "Turrubares",
+                "distritos": [
+                    "San Pablo",
+                    "San Pedro",
+                    "San Juan De Mata",
+                    "San Luis",
+                    "Carara"
+                ]
+            },
+            {
+                "nombre": "Dota",
+                "distritos": [
+                    "Santa Mar\u00eda",
+                    "Jardin",
+                    "Copey"
+                ]
+            },
+            {
+                "nombre": "Curridabat",
+                "distritos": [
+                    "Curridabat",
+                    "Granadilla",
+                    "Sanchez",
+                    "Tirrases"
+                ]
+            },
+            {
+                "nombre": "P\u00e9rez Zeled\u00f3n",
+                "distritos": [
+                    "San Isidro De El General",
+                    "El General",
+                    "Daniel Flores",
+                    "Rivas",
+                    "San Pedro",
+                    "Platanares",
+                    "Pejibaye",
+                    "Cajon",
+                    "Baru",
+                    "Rio Nuevo",
+                    "P\u00e1ramo"
+                ]
+            },
+            {
+                "nombre": "Le\u00f3n Cort\u00e9s Castro",
+                "distritos": [
+                    "San Pablo",
+                    "San Andres",
+                    "Llano Bonito",
+                    "San Isidro",
+                    "Santa Cruz",
+                    "San Antonio"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Alajuela",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Alajuela",
+                    "San Jos\u00e9",
+                    "Carrizal",
+                    "San Antonio",
+                    "Gu\u00e1cima",
+                    "San Isidro",
+                    "Sabanilla",
+                    "San Rafael",
+                    "Rio Segundo",
+                    "Desamparados",
+                    "Turrucares",
+                    "Tambor",
+                    "Garita",
+                    "Sarapiqu\u00ed"
+                ]
+            },
+            {
+                "nombre": "San Ram\u00f3n",
+                "distritos": [
+                    "San Ram\u00f3n",
+                    "Santiago",
+                    "San Juan",
+                    "Piedades Norte",
+                    "Piedades Sur",
+                    "San Rafael",
+                    "San Isidro",
+                    "Angeles",
+                    "Alfaro",
+                    "Volio",
+                    "Concepci\u00f3n",
+                    "Zapotal",
+                    "Pe\u00f1as Blancas",
+                    "San Lorenzo"
+                ]
+            },
+            {
+                "nombre": "Grecia",
+                "distritos": [
+                    "Grecia",
+                    "San Isidro",
+                    "San Jos\u00e9",
+                    "San Roque",
+                    "Tacares",
+                    "Rio Cuarto",
+                    "Puente De Piedra",
+                    "Bolivar"
+                ]
+            },
+            {
+                "nombre": "San Mateo",
+                "distritos": [
+                    "San Mateo",
+                    "Desmonte",
+                    "Jes\u00fas Mar\u00eda",
+                    "Labrador"
+                ]
+            },
+            {
+                "nombre": "Atenas",
+                "distritos": [
+                    "Atenas",
+                    "Jes\u00fas",
+                    "Mercedes",
+                    "San Isidro",
+                    "Concepci\u00f3n",
+                    "San Jos\u00e9",
+                    "Santa Eulalia",
+                    "Escobal"
+                ]
+            },
+            {
+                "nombre": "Naranjo",
+                "distritos": [
+                    "Naranjo",
+                    "San Juan",
+                    "San Miguel",
+                    "Palmitos",
+                    "El Rosario",
+                    "San Jos\u00e9",
+                    "Cirr\u00ed Sur",
+                    "San Jer\u00f3nimo"
+                ]
+            },
+            {
+                "nombre": "Palmares",
+                "distritos": [
+                    "Palmares",
+                    "Zaragoza",
+                    "Buenos Aires",
+                    "Santiago",
+                    "Candelaria",
+                    "Esquipulas",
+                    "La Granja"
+                ]
+            },
+            {
+                "nombre": "Po\u00e1s",
+                "distritos": [
+                    "San Pedro",
+                    "San Juan",
+                    "San Rafael",
+                    "Carrillos",
+                    "Sabana Redonda"
+                ]
+            },
+            {
+                "nombre": "Orotina",
+                "distritos": [
+                    "Orotina",
+                    "El Mastate",
+                    "Hacienda Vieja",
+                    "Coyolar",
+                    "La Ceiba"
+                ]
+            },
+            {
+                "nombre": "San Carlos",
+                "distritos": [
+                    "Quesada",
+                    "Florencia",
+                    "Buenavista",
+                    "Aguas Zarcas",
+                    "Venecia",
+                    "Pital",
+                    "La Fortuna",
+                    "La Tigra",
+                    "La Palmera",
+                    "Venado",
+                    "Cutris",
+                    "Monterrey",
+                    "Pocosol"
+                ]
+            },
+            {
+                "nombre": "Zarcero",
+                "distritos": [
+                    "Zarcero",
+                    "Laguna",
+                    "Tapesco",
+                    "Guadalupe",
+                    "Palmira",
+                    "Zapote",
+                    "Brisas"
+                ]
+            },
+            {
+                "nombre": "Sarch\u00ed",
+                "distritos": [
+                    "Sarch\u00ed Norte",
+                    "Sarch\u00ed Sur",
+                    "Toro Amarillo",
+                    "San Pedro",
+                    "Rodriguez"
+                ]
+            },
+            {
+                "nombre": "Upala",
+                "distritos": [
+                    "Upala",
+                    "Aguas Claras",
+                    "San Jos\u00e9 o Pizote",
+                    "Bijagua",
+                    "Delicias",
+                    "Dos Rios",
+                    "Yolillal",
+                    "Canalete"
+                ]
+            },
+            {
+                "nombre": "Los Chiles",
+                "distritos": [
+                    "Los Chiles",
+                    "Ca\u00f1o Negro",
+                    "El Amparo",
+                    "San Jorge"
+                ]
+            },
+            {
+                "nombre": "Guatuso",
+                "distritos": [
+                    "San Rafael",
+                    "Buenavista",
+                    "Cote",
+                    "Katira"
+                ]
+            },
+            {
+                "nombre": "R\u00edo Cuarto",
+                "distritos": [
+                    "R\u00edo Cuarto",
+                    "Santa Rita",
+                    "Santa Isabel"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Cartago",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Oriental",
+                    "Occidental",
+                    "Carmen",
+                    "San Nicol\u00e1s",
+                    "Aguacaliente o San Francisco",
+                    "Guadalupe o Arenilla",
+                    "Corralillo",
+                    "Tierra Blanca",
+                    "Dulce Nombre",
+                    "Llano Grande",
+                    "Quebradilla"
+                ]
+            },
+            {
+                "nombre": "Para\u00edso",
+                "distritos": [
+                    "Paraiso",
+                    "Santiago",
+                    "Orosi",
+                    "Cach\u00ed",
+                    "Llanos de Santa Luc\u00eda"
+                ]
+            },
+            {
+                "nombre": "La Uni\u00f3n",
+                "distritos": [
+                    "Tres Rios",
+                    "San Diego",
+                    "San Juan",
+                    "San Rafael",
+                    "Concepci\u00f3n",
+                    "Dulce Nombre",
+                    "San Ram\u00f3n",
+                    "Rio Azul"
+                ]
+            },
+            {
+                "nombre": "Jim\u00e9nez",
+                "distritos": [
+                    "Juan Vi\u00f1as",
+                    "Tucurrique",
+                    "Pejibaye"
+                ]
+            },
+            {
+                "nombre": "Turrialba",
+                "distritos": [
+                    "Turrialba",
+                    "La Suiza",
+                    "Peralta",
+                    "Santa Cruz",
+                    "Santa Teresita",
+                    "Pavones",
+                    "Tuis",
+                    "Tayutic",
+                    "Santa Rosa",
+                    "Tres Equis",
+                    "La Isabel",
+                    "Chirrip\u00f3"
+                ]
+            },
+            {
+                "nombre": "Alvarado",
+                "distritos": [
+                    "Pacayas",
+                    "Cervantes",
+                    "Capellades"
+                ]
+            },
+            {
+                "nombre": "Oreamuno",
+                "distritos": [
+                    "San Rafael",
+                    "Cot",
+                    "Potrero Cerrado",
+                    "Cipreses",
+                    "Santa Rosa"
+                ]
+            },
+            {
+                "nombre": "El Guarco",
+                "distritos": [
+                    "El Tejar",
+                    "San Isidro",
+                    "Tobosi",
+                    "Patio De Agua"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Heredia",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Heredia",
+                    "Mercedes",
+                    "San Francisco",
+                    "Ulloa",
+                    "Varablanca"
+                ]
+            },
+            {
+                "nombre": "Barva",
+                "distritos": [
+                    "Barva",
+                    "San Pedro",
+                    "San Pablo",
+                    "San Roque",
+                    "Santa Luc\u00eda",
+                    "San Jos\u00e9 de la Monta\u00f1a"
+                ]
+            },
+            {
+                "nombre": "Santo Domingo",
+                "distritos": [
+                    "Santo Domingo",
+                    "San Vicente",
+                    "San Miguel",
+                    "Paracito",
+                    "Santo Tom\u00e1s",
+                    "Santa Rosa",
+                    "Tures",
+                    "Para"
+                ]
+            },
+            {
+                "nombre": "Santa Barbara",
+                "distritos": [
+                    "Santa B\u00e1rbara",
+                    "San Pedro",
+                    "San Juan",
+                    "Jes\u00fas",
+                    "Santo Domingo",
+                    "Puraba"
+                ]
+            },
+            {
+                "nombre": "San Rafael",
+                "distritos": [
+                    "San Rafael",
+                    "San Josecito",
+                    "Santiago",
+                    "Los \u00c1ngeles",
+                    "Concepci\u00f3n"
+                ]
+            },
+            {
+                "nombre": "San Isidro",
+                "distritos": [
+                    "San Isidro",
+                    "San Jos\u00e9",
+                    "Concepci\u00f3n",
+                    "San Francisco"
+                ]
+            },
+            {
+                "nombre": "Bel\u00e9n",
+                "distritos": [
+                    "San Antonio",
+                    "La Ribera",
+                    "La Asuncion"
+                ]
+            },
+            {
+                "nombre": "Flores",
+                "distritos": [
+                    "San Joaqu\u00edn",
+                    "Barrantes",
+                    "Llorente"
+                ]
+            },
+            {
+                "nombre": "San Pablo",
+                "distritos": [
+                    "San Pablo",
+                    "Rincon De Sabanilla"
+                ]
+            },
+            {
+                "nombre": "Sarapiqu\u00ed",
+                "distritos": [
+                    "Puerto Viejo",
+                    "La Virgen",
+                    "Las Horquetas",
+                    "Llanuras Del Gaspar",
+                    "Cure\u00f1a"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Guanacaste",
+        "cantones": [
+            {
+                "nombre": "Liberia",
+                "distritos": [
+                    "Liberia",
+                    "Nacascolo",
+                    "Ca\u00f1as Dulces",
+                    "Mayorga",
+                    "Curubande"
+                ]
+            },
+            {
+                "nombre": "Nicoya",
+                "distritos": [
+                    "Nicoya",
+                    "Mansi\u00f3n",
+                    "San Antonio",
+                    "Quebrada Honda",
+                    "S\u00e1mara",
+                    "Nosara",
+                    "Bel\u00e9n De Nosarita"
+                ]
+            },
+            {
+                "nombre": "Santa Cruz",
+                "distritos": [
+                    "Santa Cruz",
+                    "Bolson",
+                    "Veintisiete de Abril",
+                    "Tempate",
+                    "Cartagena",
+                    "Cuajiniquil",
+                    "Diria",
+                    "Cabo Velas",
+                    "Tamarindo"
+                ]
+            },
+            {
+                "nombre": "Bagaces",
+                "distritos": [
+                    "Bagaces",
+                    "La Fortuna",
+                    "Mogote",
+                    "Rio Naranjo"
+                ]
+            },
+            {
+                "nombre": "Carrillo",
+                "distritos": [
+                    "Filadelfia",
+                    "Palmira",
+                    "Sardinal",
+                    "Belen"
+                ]
+            },
+            {
+                "nombre": "Ca\u00f1as",
+                "distritos": [
+                    "Ca\u00f1as",
+                    "Palmira",
+                    "San Miguel",
+                    "Bebedero",
+                    "Porozal"
+                ]
+            },
+            {
+                "nombre": "Abangares",
+                "distritos": [
+                    "Las Juntas",
+                    "Sierra",
+                    "San Juan",
+                    "Colorado"
+                ]
+            },
+            {
+                "nombre": "Tilar\u00e1n",
+                "distritos": [
+                    "Tilar\u00e1n",
+                    "Quebrada Grande",
+                    "Tronadora",
+                    "Santa Rosa",
+                    "L\u00edbano",
+                    "Tierras Morenas",
+                    "Arenal",
+                    "Cabeceras"
+                ]
+            },
+            {
+                "nombre": "Nandayure",
+                "distritos": [
+                    "Carmona",
+                    "Santa Rita",
+                    "Zapotal",
+                    "San Pablo",
+                    "Porvenir",
+                    "Bejuco"
+                ]
+            },
+            {
+                "nombre": "La Cruz",
+                "distritos": [
+                    "La Cruz",
+                    "Santa Cecilia",
+                    "La Garita",
+                    "Santa Elena"
+                ]
+            },
+            {
+                "nombre": "Hojancha",
+                "distritos": [
+                    "Hojancha",
+                    "Monte Romo",
+                    "Puerto Carrillo",
+                    "Huacas"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Puntarenas",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Puntarenas",
+                    "Pitahaya",
+                    "Chomes",
+                    "Lepanto",
+                    "Paquera",
+                    "Manzanillo",
+                    "Guacimal",
+                    "Barranca",
+                    "Monte Verde",
+                    "Isla Del Coco",
+                    "C\u00f3bano",
+                    "Chacarita",
+                    "Chira",
+                    "Acapulco",
+                    "El Roble",
+                    "Arancibia"
+                ]
+            },
+            {
+                "nombre": "Esparza",
+                "distritos": [
+                    "Esp\u00edritu Santo",
+                    "San Juan Grande",
+                    "Macacona",
+                    "San Rafael",
+                    "San Jer\u00f3nimo",
+                    "Caldera"
+                ]
+            },
+            {
+                "nombre": "Buenos Aires",
+                "distritos": [
+                    "Buenos Aires",
+                    "Volc\u00e1n",
+                    "Potrero Grande",
+                    "Boruca",
+                    "Pilas",
+                    "Colinas",
+                    "Changuena",
+                    "Biolley",
+                    "Brunka"
+                ]
+            },
+            {
+                "nombre": "Montes De Oro",
+                "distritos": [
+                    "Miramar",
+                    "La Uni\u00f3n",
+                    "San Isidro"
+                ]
+            },
+            {
+                "nombre": "Osa",
+                "distritos": [
+                    "Puerto Cort\u00e9s",
+                    "Palmar",
+                    "Sierpe",
+                    "Bah\u00eda Ballena",
+                    "Piedras Blancas",
+                    "Bah\u00eda Drake"
+                ]
+            },
+            {
+                "nombre": "Quepos",
+                "distritos": [
+                    "Quepos",
+                    "Savegre",
+                    "Naranjito"
+                ]
+            },
+            {
+                "nombre": "Golfito",
+                "distritos": [
+                    "Golfito",
+                    "Puerto Jim\u00e9nez",
+                    "Guaycara",
+                    "Pav\u00f3n"
+                ]
+            },
+            {
+                "nombre": "Coto Brus",
+                "distritos": [
+                    "San Vito",
+                    "Sabalito",
+                    "Aguabuena",
+                    "Limoncito",
+                    "Pittier"
+                ]
+            },
+            {
+                "nombre": "Parrita",
+                "distritos": [
+                    "Parrita"
+                ]
+            },
+            {
+                "nombre": "Corredores",
+                "distritos": [
+                    "Corredor",
+                    "La Cuesta",
+                    "Canoas",
+                    "Laurel"
+                ]
+            },
+            {
+                "nombre": "Garabito",
+                "distritos": [
+                    "Jac\u00f3",
+                    "T\u00e1rcoles"
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Lim\u00f3n",
+        "cantones": [
+            {
+                "nombre": "Central",
+                "distritos": [
+                    "Lim\u00f3n",
+                    "Valle La Estrella",
+                    "Rio Blanco",
+                    "Matama"
+                ]
+            },
+            {
+                "nombre": "Pococ\u00ed",
+                "distritos": [
+                    "Guapiles",
+                    "Jim\u00e9nez",
+                    "Rita",
+                    "Roxana",
+                    "Cariari",
+                    "Colorado",
+                    "La Colonia"
+                ]
+            },
+            {
+                "nombre": "Siquirres",
+                "distritos": [
+                    "Siquirres",
+                    "Pacuarito",
+                    "Florida",
+                    "Germania",
+                    "El Cairo",
+                    "Alegr\u00eda"
+                ]
+            },
+            {
+                "nombre": "Talamanca",
+                "distritos": [
+                    "Bratsi",
+                    "Sixaola",
+                    "Cahuita",
+                    "Telire"
+                ]
+            },
+            {
+                "nombre": "Matina",
+                "distritos": [
+                    "Matina",
+                    "Bat\u00e1n",
+                    "Carrandi"
+                ]
+            },
+            {
+                "nombre": "Gu\u00e1cimo",
+                "distritos": [
+                    "Gu\u00e1cimo",
+                    "Mercedes",
+                    "Pocora",
+                    "Rio Jim\u00e9nez",
+                    "Duacari"
+                ]
+            }
+        ]
+    }
+]
