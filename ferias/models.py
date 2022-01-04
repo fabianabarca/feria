@@ -2,6 +2,7 @@
     relevante de ellas '''
 
 from django.db import models
+from django.utils.text import slugify
 
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
     relevante de ellas '''
@@ -81,6 +82,11 @@ class Feria(models.Model):
         verbose_name = 'Feria del Agricultor'
         verbose_name_plural = 'Ferias del Agricultor'
         ordering = ['nombre']
+    
+    def get_slug(self):
+        ''' Usamos esta funcion para conseguir el slug ya que 
+        no se permiten caracteres que no sean ASCII '''
+        return slugify(self.codigo)
 
     def __str__(self):
         return self.nombre + ", " + self.distrito
