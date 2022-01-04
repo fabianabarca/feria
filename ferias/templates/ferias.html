@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Explorador{% endblock title %}
+
+{% block styles %}
+<style>
+    /* Variables */    
+    :root {
+        --card-border-radius: 16px;
+    }
+    
+    /* Rotar flecha del boton de Filtros */
+    .dropdown-toggle[aria-expanded="true"]:after {
+        transform: rotate(180deg); 
+    }
+    .dropdown-toggle:after { 
+        transition: 0.2s; 
+    }
+    /* Estilos de las cards de ferias */
+    .card-feria{
+        border-radius: var(--card-border-radius);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .card-feria:hover {
+        box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+    }
+    .card-feria-container{
+        padding: 16px 16px;
+    }
+    .card-img{
+        border-radius: var(--card-border-radius) var(--card-border-radius) 0px 0px;
+    }
+</style>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div id="filters" class="col-md-4 pt-2">
+            <form id="buscador" class="form-inline" method="get" action="/ferias" accept-charset="utf-8" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="search" aria-describedby="searchHelp"
+                            placeholder="Ingrese el nombre o comite" name="search">
+                        <button type="submit" class="btn btn-primary" value="submit" onclick="normalSearch();"><i class="bi bi-search"></i> Buscar</button>
+                    </div>
+                </div>
+                <!-- ======== Inicio - Filtros  ======== -->
+                <div>
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                        <i class="bi bi-sliders"></i> Filtros <span class="badge rounded-pill bg-danger ms-1" id="badge-filtros"></span>
+                    </a>
+                    <a class="btn btn-primary sm" onclick="getLocation();"><i class="bi bi-geo-alt"></i> Usar mi ubicación</a>
+                    <input type="text" id="lat" name="lat" hidden />
+                    <input type="text" id="lon" name="lon" hidden />
+                    <div style="display: none;" id="radiusGroup">
+                        <label for="radius" class="form-label">
+                            Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
+                        </label>
+                        <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
+                            onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
+                        <button type="submit" class="btn btn-primary" value="submit"><i class="bi bi-search"></i> Buscar con mi ubicación</button>
+                    </div>
+                    <div class="collapse p-4" style="min-width: 90%;" id="collapseFilters">
+                        <h5>Filtros de búsqueda</h5>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                        aria-expanded="false" aria-controls="collapseOne">
+                                        Ubicación  <span class="badge rounded-pill bg-danger ms-1" id="badge-ubicacion"></span>
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="headingOne">
+                                    <div class="accordion-body">
+                                        <label>Provincia</label>
+                                        <select class="form-select" aria-label="Provincia" name="provincia" id="provincia">
+                                            <option selected value="-1">Seleccione una provincia</option>
+                                        </select>
+                                        <label>Cantón</label>
+                                        <select class="form-select" aria-label="Cantón" name="canton" id="canton">
+                                            <option selected value="-1">Seleccione un cantón</option>
+                                        </select>
+                                        <label>Distrito</label>
+                                        <select class="form-select" aria-label="Distrito" name="distrito" id="distrito">
+                                            <option selected value="-1">Seleccione un distrito</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    Comodidades<span class="badge rounded-pill bg-danger ms-1" id="badge-comodidades"></span>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="headingTwo">
+                                <div class="accordion-body">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="parqueo" value="1" name="parqueo" disabled>
+                                        <label class="form-check-label" for="parqueo">Parqueo</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar ferias con parqueo"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="parqueo_bici" value="1" name="parqueo_bici" disabled>
+                                        <label class="form-check-label" for="parqueo_bici">Parqueo Bicicletas</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias con parqueo para bicicletas"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="sanitarios" value="1" name="sanitarios" disabled>
+                                        <label class="form-check-label" for="sanitarios">Servicios Sanitarios</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias con servicios sanitarios"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="bajo_techo" value="1" name="bajo_techo" disabled>
+                                        <label class="form-check-label" for="bajo_techo">Bajo Techo</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias que esten bajo techo"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="campo_ferial" value="1" name="campo_ferial" disabled>
+                                        <label class="form-check-label" for="campo_ferial">Campo Ferial</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias que esten en un campo ferial"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="agua_potable" value="1" name="agua_potable" disabled>
+                                        <label class="form-check-label" for="agua_potable">Agua Potable</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias que cuenten con agua potable"></i>
+                                    </div>
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" id="accesibilidad" value="1" name="accesibilidad" disabled>
+                                        <label class="form-check-label" for="accesibilidad">Accesibilidad</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Buscar ferias que cumplan la ley 7600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <button class="btn btn-primary m-1"><i class="bi bi-funnel"></i> Filtrar</button>
+                        <button type="submit" class="btn btn-secondary m-1" onclick="limpiarFiltros();"><i class="bi bi-eraser"></i> Limpiar
+                            filtros</button>
+                    </div>
+                </div>
+                <!-- ======== Fin - Filtros  ======== -->
+            </form>
+        </div>
+        <div id="ferias-list" class="col-md-8 pt-1">
+                <div class="row"> 
+                    {% if ferias.object_list.count > 0 %}
+                    <h6 class="text-muted">Mostrando {{ ferias.start_index }}-{{ ferias.end_index }} de un total de {{ ferias.paginator.count }} ferias</h6>
+                        {% for feria in ferias %}
+                        <div class="col-12 p-2">
+                            <div class="card-feria">
+                                <a href="{{feria.ferias_id}}" target="_blank">
+                                    <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;">
+                                </a>
+                                <div class="card-feria-container">
+                                    <a href="{{feria.ferias_id}}" target="_blank"><h4><b>{{feria.nombre}}</b></h4></a>
+                                    <p class="text-muted">
+                                        <i class="bi bi-calendar2-week"></i>
+                                        {% for horario in feria.horarios.all %}
+                                            {{horario.dia_inicio}} {{horario.hora_inicio}} - {{horario.dia_final}} {{horario.hora_final}}
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    <!-- Paginacion -->
+                    {% if ferias.has_other_pages %}
+                    <nav aria-label="Paginación de la lista de ferias">
+                        <ul class="pagination justify-content-center">
+                            <!-- Boton de previo -->
+                            {% if ferias.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="getPage({{ ferias.previous_page_number }});">Anterior</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" arias-disabled="True">Anterior</a>
+                            </li>
+                            {% endif %}
+
+                            <!-- Paginas disponibles -->
+                            {% for i in ferias.paginator.page_range %}
+                            {% if ferias.number == i %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">
+                                    {{ i }}
+                                </span>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="#" onclick="getPage({{ i }});">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            <!-- Boton de siguiente -->
+                            {% if ferias.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="#" onclick="getPage({{ ferias.next_page_number }});">Siguiente</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" arias-disabled="True">Siguiente</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% else %}
+                    <h4>No se encontraron ferias</h4>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptsEnd %}
+<script src="{% static 'js/ferias.js' %}" type="text/javascript"></script>
+{% endblock %}
