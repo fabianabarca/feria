@@ -90,7 +90,7 @@ Fotos de la feria.
 |---------------|--------|-------------|----------------------------------------------------------------------------------------|
 | `foto_id`     | ID     | R           | Un ID de la tabla de ferias que indica a cuál corresponde el horario.                  |
 | `feria_id`    | ID     | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
-| `descripcion` | Texto  | R           | HH:MM                                                                                  |
+| `descripcion` | Texto  | R           | Reseña de la imagen. Ejemplo: Puesto de tomates.                                       |
 | `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
 | `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
