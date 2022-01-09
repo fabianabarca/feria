@@ -5,8 +5,9 @@
 - [Definiciones de campos](#definiciones)
     - [Ferias](#ferias)
     - [Horarios](#horarios)
-    - [Productos](#productos)
     - [Fotos](#fotos)
+    - [Area](#Area)
+    - [Productos](#productos)
 
 ## Definiciones de términos <a name="terminos"></a>
 
@@ -47,19 +48,29 @@ En la columna "Obligatorio" están las opciones **R** (requerido), **O** (opcion
 
 Información general básica de cada feria, incluyendo ubicación e infraestructura.
 
-| Campo             | Tipo   | Obligatorio | Descripción                                                                                          |
-|-------------------|--------|-------------|------------------------------------------------------------------------------------------------------|
-| `feria_id`        | ID     | R           | Un identificador de tres letras mayúsculas para la feria. Ejemplo: CUR para la Feria de Curridabat.  |
-| `codigo_url`      | Texto  | R           | Un nombre que será usado en la URL de cada feria. Ejemplo: "zapote" para https://ejemplo.com/zapote. |
-| `nombre`          | Texto  | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
-| `conocido_como`   | Texto  | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
-| `comite`          | Texto  | O           | Nombre del comite regional correspondiente a cada feria. Ejemplo: ---------.                         |
-| `administrador`   | Texto  | R           | Nombre del ente local administrador de la feria. Ejemplo: ----------.                                |
-| `telefono`        | String | R           | Número de telefono del representante del ente local administrador de la feria. Ejemplo: ------.      |
-| `provincia`       | Entero | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
-| `estacionamiento` | Entero | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.     |
+| Campo              | Tipo                | Obligatorio | Descripción                                                                                          |
+|--------------------|---------------------|-------------|------------------------------------------------------------------------------------------------------|
+| `feria_id`         | ID                  | R           | Un identificador de tres letras mayúsculas para la feria. Ejemplo: CUR para la Feria de Curridabat.  |
+| `codigo_url`       | Texto               | R           | Un nombre que será usado en la URL de cada feria. Ejemplo: "zapote" para https://ejemplo.com/zapote. |
+| `nombre`           | Texto               | R           | Nombre oficial de la feria. Ejemplo: Mercado Libre de Guadalupe.                                     |
+| `conocida_como`    | Texto               | O           | Nombre común de la feria. Ejemplo: Feria de Guadalupe.                                               |
+| `comite`           | Texto               | O           | Nombre del comite regional correspondiente a cada feria. Ejemplo: Cómite Regional Central Central.   |
+| `administrador`    | Texto               | R           | Nombre del ente local administrador de la feria. Ejemplo: CAC de Mora.                               |
+| `telefono`         | Número de teléfono  | R           | Número de telefono del representante del ente local administrador de la feria. Ejemplo: 24185712.    |
+| `provincia`        | Entero              | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
+| `canton`           | Entero              | R           | 1 - Abangares, 2 - Acosta, 3 - Alajuelita, 4 - Alvarado, 5 - Aserrí, 6 - Atenas, 7 - Bagaces ... 82 - Zarcero.       |
+| `distrito`         | Texto               | R           | Nombre del distrito en el que se realiza la feria. Ejemplo: Colón.                                   |
+| `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
+| `estacionamiento`  | Entero              | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.|
+| `parqueo_bicicleta`| ...                 | R           | ...                                                                                                  |
+| `sanitarios`       | ...                 | R           | ...                                                                                                  |
+| `campo_ferial`     | ...                 | R           | ...                                                                                                  |
+| `bajo_techo`       | ...                 | R           | ...                                                                                                  |
+| `agua_potable`     | ...                 | R           | ...                                                                                                  |
+| `metodos_pago`     | ...                 | R           | ...                                                                                                  |
 
 ### Horarios <a name="horarios"></a>
+
 
 Tabla de horarios de cada feria.
 
@@ -79,7 +90,7 @@ Fotos de la feria.
 |---------------|--------|-------------|----------------------------------------------------------------------------------------|
 | `foto_id`     | ID     | R           | Un ID de la tabla de ferias que indica a cuál corresponde el horario.                  |
 | `feria_id`    | ID     | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
-| `descripcion` | Texto  | R           | HH:MM                                                                                  |
+| `descripcion` | Texto  | R           | Reseña de la imagen. Ejemplo: Puesto de tomates.                                       |
 | `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
 | `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
