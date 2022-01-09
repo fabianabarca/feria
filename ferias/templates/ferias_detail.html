@@ -9,7 +9,76 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{feria.nombre}}</h1>
+<div class="container-fluid">
+    <div class="row">
+        <!-- ===========  Carousel =========== -->
+        <div class="col-md-12" id="carouselSection">
+            <div id="carouselImgsFeria" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselImgsFeria" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselImgsFeria" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselImgsFeria" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- TODO: cambiar cuando se agregue el modelo de Feria -->
+                    {% for i in '012'|make_list %}
+                    <div class="carousel-item {% if i == '0' %} active {% endif %}">
+                        <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" class="w-100 d-inline-block" style="max-height: 40vh;object-fit: cover;">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImgsFeria"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselImgsFeria"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- ===========  Info Feria =========== -->
+        <div class="col-md-4" id="info-feria">
+            <h1>{{feria.nombre}}</h1>
+            <p class="text-muted">{{feria.distrito}}, {{feria.canton}}</p>
+            <small>Dirección exacta:</small>
+            <p class="text-muted">{{feria.direccion}}</p>
+        </div>
+        <!-- ===========  Info Productos de la Feria =========== -->
+        <div class="col-md-8" id="info-productos">
+            {% if feria.oferta.count > 0 %}
+            <h5>Productos que se venden en esta feria</h5>
+            <div class="row">                
+            {% for producto in feria.oferta.all %}
+            <!-- ===========  Info de Producto espeficico =========== -->
+            <div class="col-md-4">
+                <div class="card-feria">
+                    <a href="#" target="_blank">
+                        <img src="{{producto.imagen.url}}"
+                            alt="Imagen de {{producto.nombre_comun}}" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;">
+                    </a>
+                    <div class="card-feria-container">
+                        <a href="#">
+                            <h6><b>{{producto.nombre_comun}}</b></h6>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-info" role="alert">
+                Esta feria no tiene productos asociados comuniquese con el administrador de esta página.
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block scriptsEnd %}
 {% endblock %}

@@ -126,7 +126,8 @@ function setParamsFromQuery() {
         var input = allInputs[i];
         if (params[input.name] !== undefined) {
             input.value = params[input.name];
-            if (input.name !== "lat" && input.name !== "lon" && input.name !== "radius")
+            if (input.name !== "lat" && input.name !== "lon" 
+                && input.name !== "radius" && input.name !== "search")
             {
                 filtersComodidadesCount++;
             }
@@ -144,7 +145,6 @@ function setParamsFromQuery() {
     if (params['canton'] !== undefined) {
         getCantones(provinciaSelect.value);
         cantonSelect.value = decodeURIComponent(params['canton']).replaceAll('+', ' ');
-        console.log(cantonSelect.value);
         getDistritos(cantonSelect.value);
         filtersUbicacionCount++;
     }
@@ -226,8 +226,7 @@ function updateRadiusInput(val) {
  **/
 function getPage(page) {
     let url = new URL(window.location.href);
-    url.searchParams.set('page', page);
-    console.log(url);
+    url.searchParams.set('page', page);    
     window.open(url.href, "_self");
 }
 
