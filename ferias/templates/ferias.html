@@ -157,6 +157,7 @@
                 <!-- ======== Fin - Filtros  ======== -->
             </form>
         </div>
+        <!-- ============ Lista de ferias ============ -->
         <div id="ferias-list" class="col-md-8 pt-1">
                 <div class="row"> 
                     {% if ferias.object_list.count > 0 %}
@@ -168,7 +169,7 @@
                                     <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;">
                                 </a>
                                 <div class="card-feria-container">
-                                    <a href="{{feria.ferias_id}}" target="_blank"><h4><b>{{feria.nombre}}</b></h4></a>
+                                    <a href="{{feria.ferias_id}}/{{feria.get_slug}}"><h4><b>{{feria.nombre}}</b></h4></a>
                                     <p class="text-muted">
                                         <i class="bi bi-calendar2-week"></i>
                                         {% for horario in feria.horarios.all %}
@@ -225,6 +226,7 @@
                     {% endif %}
                 </div>
         </div>
+        <!-- ============ Fin - Lista de ferias ============ -->
     </div>
 </div>
 {% endblock %}

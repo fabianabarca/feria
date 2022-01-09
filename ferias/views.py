@@ -1,40 +1,22 @@
-import math
 import os
 import json
 from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from ferias.models import Feria
+from ferias.utils import is_in_radius
 
 
 def openlayers(request):
     context = {'coords_cr': [-84.090725, 9.928069], 'zoom': 13, 'radio': 4000}
     return render(request, 'openlayers.html', context)
 
-
-def is_in_radius(lat1, lon1, lat2, lon2, radius):
-    """ Calcular distancia de dos coordenadas usando la formula Haversine
-            https://www.movable-type.co.uk/scripts/latlong.html
-        """
-
-    radius_earth = 6371e3  # Radio de la tierra en metros
-    pi_radian = (math.pi/180)
-    phi_1 = lat1 * pi_radian
-    phi_2 = lat2 * pi_radian
-    delta_phi = (lat2 - lat1) * pi_radian
-    delta_lambda = (lon2 - lon1) * pi_radian
-
-    a = math.sin(delta_phi/2)**2 + math.cos(phi_1) * \
-        math.cos(phi_2) * math.sin(delta_lambda/2) ** 2
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-    distance = radius_earth * c
-    if distance <= radius:
-        return True
-    else:
-        return False
-
+def ferias_detail(request, feria_id, slug = None):
+    feria = get_object_or_404(Feria, ferias_id=feria_id)
+    context = {'feria': feria}
+    return render(request, 'ferias_detail.html',context)
 
 def ferias(request):
     query = Q()

@@ -9,8 +9,9 @@ from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from ferias.models import Feria
+from ferias.utils import is_in_radius
 from api.serializers.feria_serializer import FeriaSerializer
-from api.views.utils import DynamicFieldsViewMixin, FeriasHelper
+from api.views.utils import DynamicFieldsViewMixin
 from api.docs.params.parameters import optional_params
 from api.docs.params.ferias import ferias_params
 
@@ -48,9 +49,9 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
             index = 0
             for feria in ferias.iterator():
                 # Verificar si esta en el radio
-                if FeriasHelper.is_in_radius(float(lat), float(lon),
-                                             feria.latitud, feria.longitud,
-                                             int(radius)):
+                if is_in_radius(float(lat), float(lon),
+                                 feria.latitud, feria.longitud,
+                                 int(radius)):
                     # Agregar ID de la feria
                     ferias_id_filtered.insert(index, feria.ferias_id)
                     index = index + 1
