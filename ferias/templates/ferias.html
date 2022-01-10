@@ -12,6 +12,7 @@
 <div class="container">
     <div class="row">
         <div id="filters" class="col-md-4 pt-2">
+            <h6 class="text-muted">Buscador normal</h6>
             <form id="buscador" class="form-inline" method="get" action="/ferias" accept-charset="utf-8" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="input-group mb-3">
@@ -29,6 +30,8 @@
                     <input type="text" id="lat" name="lat" hidden />
                     <input type="text" id="lon" name="lon" hidden />
                     <div style="display: none;" id="radiusGroup">
+                        <hr />
+                        <h6 class="text-muted">Buscador geolocalización</h6>
                         <label for="radius" class="form-label">
                             Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
                         </label>
@@ -134,19 +137,26 @@
                     {% if ferias.object_list.count > 0 %}
                     <h6 class="text-muted">Mostrando {{ ferias.start_index }}-{{ ferias.end_index }} de un total de {{ ferias.paginator.count }} ferias</h6>
                         {% for feria in ferias %}
-                        <div class="col-12 p-2">
+                        <div class="col-6 p-2">
                             <div class="card-feria">
                                 <a href="{{feria.ferias_id}}" target="_blank">
-                                    <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;">
+                                    <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;" loading="lazy">                                    
                                 </a>
                                 <div class="card-feria-container">
-                                    <a href="{{feria.ferias_id}}/{{feria.get_slug}}"><h4><b>{{feria.nombre}}</b></h4></a>
+                                    <a href="{{feria.ferias_id}}/{{feria.get_slug}}">
+                                        <h4>
+                                            <b>{{feria.nombre}}</b>
+                                        </h4>
+                                    </a>
                                     <p class="text-muted">
-                                        <i class="bi bi-calendar2-week"></i>
-                                        {% for horario in feria.horarios.all %}
-                                            {{horario.dia_inicio}} {{horario.hora_inicio}} - {{horario.dia_final}} {{horario.hora_final}}
-                                        {% endfor %}
+                                        <i class="bi bi-geo"></i>
+                                         {{feria.distrito}}, {{feria.canton}}, {{feria.get_provincia_display}}
                                     </p>
+                                    {% if feria.abre_hoy %}
+                                    <span class="badge bg-success">Abre hoy</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Cerrado hoy</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -193,7 +203,7 @@
                     </nav>
                     {% endif %}
                     {% else %}
-                    <div class="alert alert-danger" role="alert">No se encontraron ferias con ese termino</div>
+                    <div class="alert alert-danger" role="alert"><i class="bi bi-emoji-frown"></i> No se encontraron ferias.</div>
                     {% endif %}
                 </div>
         </div>
