@@ -119,6 +119,9 @@ function setupForm() {
 function setParamsFromQuery() {
     var params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        if(key === 'search'){
+            value = decodeURI(value).replaceAll('+', ' ');
+        }
         params[key] = value;
     });
     var allInputs = myForm.getElementsByTagName('input');
@@ -163,6 +166,8 @@ function setParamsFromQuery() {
     }
     if(totalFilters > 0){
         document.getElementById('badge-filtros').innerHTML = totalFilters;
+        //Abrir seccion de filtros
+        document.getElementById('dropdown-filter').click();        
     }
 }
 

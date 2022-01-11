@@ -7,7 +7,7 @@ from django.core import serializers
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from ferias.models import Feria
-from ferias.utils import is_in_radius
+from ferias.utils import is_in_radius, get_provincia_num
 
 
 def openlayers(request):
@@ -27,9 +27,12 @@ def ferias_detail(request, feria_id, slug = None):
 def ferias(request):
     query = Q()
     # Input search
-    query &= Q(nombre__contains=request.GET.get('search', ''))
-    # query != Q(conocida_como__contains=request.GET.get('search', ''))
-    # query != Q(comite__contains=request.GET.get('search', ''))
+    query |= Q(nombre__icontains=request.GET.get('search', ''))
+    query |= Q(provincia=get_provincia_num(request.GET.get('search', '')))
+    query |= Q(canton__icontains=request.GET.get('search', ''))
+    query |= Q(distrito__icontains=request.GET.get('search', ''))
+    # query |= Q(conocida_como__icontains=request.GET.get('search', ''))
+    # query |= Q(comite__icontains=request.GET.get('search', ''))
 
     # Filters
     if 'provincia' in request.GET:

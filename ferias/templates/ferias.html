@@ -23,22 +23,10 @@
                 </div>
                 <!-- ======== Inicio - Filtros  ======== -->
                 <div>
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    <a id="dropdown-filter" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                         <i class="bi bi-sliders"></i> Filtros <span class="badge rounded-pill bg-danger ms-1" id="badge-filtros"></span>
                     </a>
-                    <a class="btn btn-primary sm" onclick="getLocation();"><i class="bi bi-geo-alt"></i> Usar mi ubicación</a>
-                    <input type="text" id="lat" name="lat" hidden />
-                    <input type="text" id="lon" name="lon" hidden />
-                    <div style="display: none;" id="radiusGroup">
-                        <hr />
-                        <h6 class="text-muted">Buscador geolocalización</h6>
-                        <label for="radius" class="form-label">
-                            Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
-                        </label>
-                        <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
-                            onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
-                        <button type="submit" class="btn btn-primary" value="submit"><i class="bi bi-search"></i> Buscar con mi ubicación</button>
-                    </div>
+                    <a class="btn btn-primary sm" onclick="getLocation();"><i class="bi bi-geo-alt"></i> Usar mi ubicación</a>                    
                     <div class="collapse p-4" style="min-width: 90%;" id="collapseFilters">
                         <h5>Filtros de búsqueda</h5>
                         <div class="accordion">
@@ -127,6 +115,19 @@
                         <button type="submit" class="btn btn-secondary m-1" onclick="limpiarFiltros();"><i class="bi bi-eraser"></i> Limpiar
                             filtros</button>
                     </div>
+                    <input type="text" id="lat" name="lat" hidden />
+                    <input type="text" id="lon" name="lon" hidden />
+                    <div style="display: none;" id="radiusGroup">
+                        <hr />
+                        <h6 class="text-muted">Buscador geolocalización</h6>
+                        <label for="radius" class="form-label">
+                            Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
+                        </label>
+                        <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
+                            onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
+                        <button type="submit" class="btn btn-primary" value="submit"><i class="bi bi-search"></i> Buscar con mi
+                            ubicación</button>
+                    </div>
                 </div>
                 <!-- ======== Fin - Filtros  ======== -->
             </form>
@@ -144,13 +145,13 @@
                                 </a>
                                 <div class="card-feria-container">
                                     <a href="{{feria.ferias_id}}/{{feria.get_slug}}">
-                                        <h4>
+                                        <h5>
                                             <b>{{feria.nombre}}</b>
-                                        </h4>
+                                        </h5>
                                     </a>
                                     <p class="text-muted">
                                         <i class="bi bi-geo"></i>
-                                         {{feria.distrito}}, {{feria.canton}}, {{feria.get_provincia_display}}
+                                        {{feria.get_provincia_display}}, {{feria.canton}}, {{feria.distrito}}
                                     </p>
                                     {% if feria.abre_hoy %}
                                     <span class="badge bg-success">Abre hoy</span>
@@ -203,7 +204,7 @@
                     </nav>
                     {% endif %}
                     {% else %}
-                    <div class="alert alert-danger" role="alert"><i class="bi bi-emoji-frown"></i> No se encontraron ferias.</div>
+                    <div class="alert alert-danger" role="alert"><b><i class="bi bi-emoji-frown"></i> No se encontraron ferias.</b><br> Verifique que escribió el termino con acentos si es que los tiene.</div>
                     {% endif %}
                 </div>
         </div>

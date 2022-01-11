@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load l10n %}
 
 {% block title %}{{feria.nombre}}{% endblock title %}
 
@@ -9,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <!-- ===========  Carousel =========== -->
         <div class="col-md-12" id="carouselSection">
@@ -55,13 +56,20 @@
             {% endif %}
             <p class="text-muted">
                 <i class="bi bi-geo"></i>
-                {{feria.distrito}}, {{feria.canton}}, {{feria.get_provincia_display}}
+                {{feria.get_provincia_display}}, {{feria.canton}}, {{feria.distrito}}
             </p>
             <small><i class="bi bi-geo-alt"></i> Dirección exacta:</small>
-            <p class="text-muted">{{feria.direccion}}</p>
+            <p class="text-muted">
+                {{feria.direccion}}
+                <br>
+                <a class="btn btn-info btn-sm" target="_blank"
+                    href="https://www.google.com/maps/search/?api=1&query={{feria.latitud|unlocalize}},{{feria.longitud|unlocalize}}">
+                    <i class="bi bi-map"></i> Ver en Google Maps
+                </a>
+            </p>
             <small><i class="bi bi-clock"></i> Horario:</small>
             <ul id="horarios-section">
-            </ul>
+            </ul>      
         </div>
         <!-- ===========  Info Productos de la Feria =========== -->
         <div class="col-md-8" id="info-productos">
