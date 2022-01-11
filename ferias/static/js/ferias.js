@@ -119,6 +119,9 @@ function setupForm() {
 function setParamsFromQuery() {
     var params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        if(key === 'search'){
+            value = decodeURI(value).replaceAll('+', ' ');
+        }
         params[key] = value;
     });
     var allInputs = myForm.getElementsByTagName('input');
@@ -126,7 +129,8 @@ function setParamsFromQuery() {
         var input = allInputs[i];
         if (params[input.name] !== undefined) {
             input.value = params[input.name];
-            if (input.name !== "lat" && input.name !== "lon" && input.name !== "radius")
+            if (input.name !== "lat" && input.name !== "lon" 
+                && input.name !== "radius" && input.name !== "search")
             {
                 filtersComodidadesCount++;
             }
@@ -144,7 +148,6 @@ function setParamsFromQuery() {
     if (params['canton'] !== undefined) {
         getCantones(provinciaSelect.value);
         cantonSelect.value = decodeURIComponent(params['canton']).replaceAll('+', ' ');
-        console.log(cantonSelect.value);
         getDistritos(cantonSelect.value);
         filtersUbicacionCount++;
     }
@@ -163,6 +166,8 @@ function setParamsFromQuery() {
     }
     if(totalFilters > 0){
         document.getElementById('badge-filtros').innerHTML = totalFilters;
+        //Abrir seccion de filtros
+        document.getElementById('dropdown-filter').click();        
     }
 }
 
@@ -226,8 +231,7 @@ function updateRadiusInput(val) {
  **/
 function getPage(page) {
     let url = new URL(window.location.href);
-    url.searchParams.set('page', page);
-    console.log(url);
+    url.searchParams.set('page', page);    
     window.open(url.href, "_self");
 }
 

@@ -3,10 +3,11 @@ import json
 from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.core import serializers
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from ferias.models import Feria
-from ferias.utils import is_in_radius
+from ferias.utils import is_in_radius, get_provincia_num
 
 
 def openlayers(request):
@@ -15,15 +16,23 @@ def openlayers(request):
 
 def ferias_detail(request, feria_id, slug = None):
     feria = get_object_or_404(Feria, ferias_id=feria_id)
-    context = {'feria': feria}
+    # convertir a json para poder usarlo con facilidad con JS  
+    horarios = json.loads(serializers.serialize("json", feria.horarios.all()))
+    context = {
+        'feria': feria,
+        'horarios': json.dumps(horarios)
+        }
     return render(request, 'ferias_detail.html',context)
 
 def ferias(request):
     query = Q()
     # Input search
-    query &= Q(nombre__contains=request.GET.get('search', ''))
-    # query != Q(conocida_como__contains=request.GET.get('search', ''))
-    # query != Q(comite__contains=request.GET.get('search', ''))
+    query |= Q(nombre__icontains=request.GET.get('search', ''))
+    query |= Q(provincia=get_provincia_num(request.GET.get('search', '')))
+    query |= Q(canton__icontains=request.GET.get('search', ''))
+    query |= Q(distrito__icontains=request.GET.get('search', ''))
+    # query |= Q(conocida_como__icontains=request.GET.get('search', ''))
+    # query |= Q(comite__icontains=request.GET.get('search', ''))
 
     # Filters
     if 'provincia' in request.GET:
@@ -66,17 +75,11 @@ def ferias(request):
         # Filtrar las ferias que esten es el radio dado          
         ferias = ferias.filter(ferias_id__in=ferias_id_filtered)
     # Paginación
-    paginator = Paginator(ferias, 1)
+    paginator = Paginator(ferias, 10)
     page_number = request.GET.get('page') if 'page' in request.GET else 1
     ferias_paged = paginator.get_page(page_number)
 
-    # Provincias, Cantones, Distritos
-    distribucion_cr = {}
-    with open(os.path.join(settings.BASE_DIR, 'static/data/cr_distribucion.json')) as json_file:
-        distribucion_cr = json.load(json_file)
-
     context = {
-        'ferias': ferias_paged,
-        'distribucion': distribucion_cr
+        'ferias': ferias_paged
         }
     return render(request, 'ferias.html', context)

@@ -3,7 +3,7 @@
         "nombre": "San Jos\u00e9",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "San Jos\u00e9",
                 "distritos": [
                     "Carmen",
                     "Merced",
@@ -229,7 +229,7 @@
         "nombre": "Alajuela",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "Alajuela",
                 "distritos": [
                     "Alajuela",
                     "San Jos\u00e9",
@@ -431,7 +431,7 @@
         "nombre": "Cartago",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "Cartago",
                 "distritos": [
                     "Oriental",
                     "Occidental",
@@ -527,7 +527,7 @@
         "nombre": "Heredia",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "Heredia",
                 "distritos": [
                     "Heredia",
                     "Mercedes",
@@ -749,7 +749,7 @@
         "nombre": "Puntarenas",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "Puntarenas",
                 "distritos": [
                     "Puntarenas",
                     "Pitahaya",
@@ -868,7 +868,7 @@
         "nombre": "Lim\u00f3n",
         "cantones": [
             {
-                "nombre": "Central",
+                "nombre": "Lim\u00f3n",
                 "distritos": [
                     "Lim\u00f3n",
                     "Valle La Estrella",

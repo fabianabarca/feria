@@ -1,39 +1,16 @@
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
     relevante de ellas '''
 
+import datetime
+import locale
 from django.db import models
 from django.utils.text import slugify
+from ferias.utils import *
+
+locale.setlocale(locale.LC_TIME, '')
 
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
     relevante de ellas '''
-
-PROVINCIAS = (
-    (0, 'San José'),
-    (1, 'Alajuela'),
-    (2, 'Cartago'),
-    (3, 'Heredia'),
-    (4, 'Guanacaste'),
-    (5, 'Puntarenas'),
-    (6, 'Limon')
-)
-
-DIAS_SEMANA = (
-    ('L', 'Lunes'),
-    ('K', 'Martes'),
-    ('M', 'Miércoles'),
-    ('J', 'Jueves'),
-    ('V', 'Viernes'),
-    ('S', 'Sábado')
-)
-
-CATEGORIAS_PRODUCTOS = (
-    (0, 'Frutas'),
-    (1, 'Vegetales'),
-    (2, 'Lácteos'),
-    (3, 'Artesanías'),
-    (4, 'Comidas'),
-    (5, 'Otros')
-)
 
 def path_producto(instance, filename):
     return 'producto/{}/{}'.format(instance.nombre_comun, filename)
@@ -87,6 +64,16 @@ class Feria(models.Model):
         ''' Usamos esta funcion para conseguir el slug ya que 
         no se permiten caracteres que no sean ASCII '''
         return slugify(self.codigo)
+
+    def abre_hoy(self):
+        ''' Verifica si la feria abre hoy (hora server) '''
+        abre = False
+        dia = datetime.datetime.now().strftime("%A")[0]        
+        for horario in self.horarios.all():
+            if dia.lower() == horario.dia_inicio[0].lower():
+                abre = True
+                break
+        return abre            
 
     def __str__(self):
         return self.nombre + ", " + self.distrito
