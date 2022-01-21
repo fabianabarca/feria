@@ -62,12 +62,12 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `distrito`         | Texto               | R           | Nombre del distrito en el que se realiza la feria. Ejemplo: Colón.                                   |
 | `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
 | `estacionamiento`  | Entero              | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.|
-| `parqueo_bicicleta`| ...                 | R           | ...                                                                                                  |
-| `sanitarios`       | ...                 | R           | ...                                                                                                  |
-| `campo_ferial`     | ...                 | R           | ...                                                                                                  |
-| `bajo_techo`       | ...                 | R           | ...                                                                                                  |
-| `agua_potable`     | ...                 | R           | ...                                                                                                  |
-| `metodos_pago`     | ...                 | R           | ...                                                                                                  |
+| `parqueo_bicicleta`| Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
+| `sanitarios`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
+| `campo_ferial`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
+| `bajo_techo`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
+| `agua_potable`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
+| `metodos_pago`     |                     | R           |                                                                                                      |
 
 ### Horarios <a name="horarios"></a>
 
