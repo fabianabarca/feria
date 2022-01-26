@@ -8,7 +8,7 @@ from ferias.models import Feria
 class FeriaTestCase(TestCase):
     def setUp(self):
         Feria.objects.create(
-            ferias_id='SCA',
+            feria_id='SCA',
             codigo='San Carlos',
             nombre='Feria de San Carlos',
             provincia=1,
@@ -19,7 +19,7 @@ class FeriaTestCase(TestCase):
             longitud=-25.26526
         )
         Feria.objects.create(
-            ferias_id='GUA',
+            feria_id='GUA',
             codigo='Guadalupe',
             nombre='Feria de Guadalupe',
             provincia=0,
@@ -31,7 +31,7 @@ class FeriaTestCase(TestCase):
         )
 
         self.guada_expected_json = {
-            "ferias_id": "GUA", "oferta": [], "horarios": [],
+            "feria_id": "GUA", "oferta": [], "horarios": [],
             "codigo": "Guadalupe", "nombre": "Feria de Guadalupe",
             "provincia": 0, "canton": "Goicoechea",
             "distrito": "Guadalupe", "direccion": "Direccion 1",
@@ -52,7 +52,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 2)
 
         for feria in result:
-            self.assertIn('ferias_id', feria)
+            self.assertIn('feria_id', feria)
             self.assertIn('oferta', feria)
             self.assertIn('horarios', feria)
             self.assertIn('nombre', feria)
@@ -79,7 +79,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 11)
         self.assertEqual(result, self.guada_expected_json)
 
-        self.assertIn('ferias_id', result)
+        self.assertIn('feria_id', result)
         self.assertIn('oferta', result)
         self.assertIn('horarios', result)
         self.assertIn('nombre', result)
@@ -106,7 +106,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0], self.guada_expected_json)
 
-        self.assertIn('ferias_id', result[0])
+        self.assertIn('feria_id', result[0])
         self.assertIn('oferta', result[0])
         self.assertIn('horarios', result[0])
         self.assertIn('nombre', result[0])
@@ -133,7 +133,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0], self.guada_expected_json)
 
-        self.assertIn('ferias_id', result[0])
+        self.assertIn('feria_id', result[0])
         self.assertIn('oferta', result[0])
         self.assertIn('horarios', result[0])
         self.assertIn('nombre', result[0])
@@ -201,7 +201,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 1)
 
         for feria in result:
-            self.assertIn('ferias_id', feria)
+            self.assertIn('feria_id', feria)
             self.assertIn('oferta', feria)
             self.assertIn('horarios', feria)
             self.assertIn('nombre', feria)
@@ -289,7 +289,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 2)
 
         for feria in result:
-            self.assertNotIn('ferias_id', feria)
+            self.assertNotIn('feria_id', feria)
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)
@@ -317,7 +317,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 2)
 
         for feria in result:
-            self.assertNotIn('ferias_id', feria)
+            self.assertNotIn('feria_id', feria)
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)
@@ -345,7 +345,7 @@ class FeriaTestCase(TestCase):
         self.assertEqual(len(result), 1)
 
         for feria in result:
-            self.assertNotIn('ferias_id', feria)
+            self.assertNotIn('feria_id', feria)
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)

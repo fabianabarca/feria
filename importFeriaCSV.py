@@ -19,7 +19,7 @@ def load():
             # invertir diccionario de Provincias
             prov =  dict((v,k) for k,v in PROVINCIAS).get(row[7])
             _, created = Feria.objects.update_or_create(
-                ferias_id=row[0],
+                feria_id=row[0],
                 defaults={
                     'codigo' : row[1],
                     'nombre' : row[2],

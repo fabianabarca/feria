@@ -35,7 +35,7 @@ class ProductoSerializer(serializers.Serializer):
 
 
 class FeriaSerializer(serializers.Serializer):
-    ferias_id = serializers.CharField(max_length=3)
+    feria_id = serializers.CharField(max_length=3)
     codigo = serializers.CharField(max_length=30)
     nombre = serializers.CharField(max_length=128)
     provincia = serializers.IntegerField(max_value=6, min_value=0)

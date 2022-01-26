@@ -15,7 +15,7 @@ def openlayers(request):
     return render(request, 'openlayers.html', context)
 
 def ferias_detail(request, feria_id, slug = None):
-    feria = get_object_or_404(Feria, ferias_id=feria_id)
+    feria = get_object_or_404(Feria, feria_id=feria_id)
     # convertir a json para poder usarlo con facilidad con JS  
     horarios = json.loads(serializers.serialize("json", feria.horarios.all()))
     context = {
@@ -63,17 +63,17 @@ def ferias(request):
         lon = request.GET.get('lon')
         radius = request.GET.get('radius')
         index = 0
-        ferias_id_filtered = []
+        feria_id_filtered = []
         for feria in ferias.iterator():
             # Verificar si esta en el radio
             if is_in_radius(float(lat), float(lon),
                             feria.latitud, feria.longitud,
                             int(radius)):
                 # Agregar ID de la feria
-                ferias_id_filtered.insert(index, feria.ferias_id)
+                feria_id_filtered.insert(index, feria.feria_id)
                 index = index + 1
         # Filtrar las ferias que esten es el radio dado          
-        ferias = ferias.filter(ferias_id__in=ferias_id_filtered)
+        ferias = ferias.filter(feria_id__in=feria_id_filtered)
     # Paginación
     paginator = Paginator(ferias, 10)
     page_number = request.GET.get('page') if 'page' in request.GET else 1

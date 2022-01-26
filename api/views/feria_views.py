@@ -38,7 +38,7 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
                      'horarios__dia_final']
 
     def get_queryset(self):
-        ferias_id_filtered = []
+        feria_id_filtered = []
         ferias = Feria.objects.all()
         # Parametros del URL
         lat = self.request.query_params.get('lat')
@@ -53,17 +53,17 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
                                  feria.latitud, feria.longitud,
                                  int(radius)):
                     # Agregar ID de la feria
-                    ferias_id_filtered.insert(index, feria.ferias_id)
+                    feria_id_filtered.insert(index, feria.feria_id)
                     index = index + 1
             # Filtrar las ferias que esten es el radio dado
-            return ferias.filter(ferias_id__in=ferias_id_filtered)
+            return ferias.filter(feria_id__in=feria_id_filtered)
         else:
             # Devolver todas las ferias si falta alguno de los parametros
             return ferias
 
 
 @extend_schema(
-    summary="ferias/{ferias_id}/",
+    summary="ferias/{feria_id}/",
     tags=['Ferias'],
     parameters=optional_params)
 class FeriaDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):

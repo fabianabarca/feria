@@ -24,8 +24,8 @@ class ProductoAdmin(admin.ModelAdmin):
 
 
 class FotoAdmin(admin.ModelAdmin):
-    search_fields = ['feria']
-    list_filter = ['perfil, portada']
+    search_fields = ['feria__nombre']
+    list_filter = ('perfil', 'portada',)
     form = FotoForm
 
 

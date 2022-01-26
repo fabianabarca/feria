@@ -20,7 +20,7 @@ class HorarioDetail(generics.RetrieveAPIView):
     def get_object(self, pk):
         '''Traer de la base de datos un horario dado el ID (pk) de la Feria'''
         try:
-            return Horario.objects.filter(feria__ferias_id=pk).all()
+            return Horario.objects.filter(feria__feria_id=pk).all()
         except Horario.DoesNotExist:
             raise Http404
 
