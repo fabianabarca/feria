@@ -1,11 +1,11 @@
 from django.contrib import admin
-from ferias.models import Feria, Horario, Producto
-from ferias.forms import FeriaForm, HorarioForm, ProductoForm
+from ferias.models import Feria, Horario, Producto, Foto
+from ferias.forms import FeriaForm, HorarioForm, ProductoForm, FotoForm
 
 
 class FeriaAdmin(admin.ModelAdmin):
-    search_fields = ['ferias_id', 'nombre', 'distrito']
-    list_display = ('ferias_id', '__str__', 'provincia')
+    search_fields = ['feria_id', 'nombre', 'distrito']
+    list_display = ('feria_id', '__str__', 'provincia')
     list_filter = ['provincia', 'canton']
     filter_horizontal = ('oferta',)
     form = FeriaForm
@@ -23,6 +23,13 @@ class ProductoAdmin(admin.ModelAdmin):
     form = ProductoForm
 
 
+class FotoAdmin(admin.ModelAdmin):
+    search_fields = ['feria']
+    list_filter = ['perfil, portada']
+    form = FotoForm
+
+
 admin.site.register(Feria, FeriaAdmin)
 admin.site.register(Horario, HorarioAdmin)
 admin.site.register(Producto, ProductoAdmin)
+admin.site.register(Foto, FotoAdmin)
