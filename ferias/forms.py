@@ -1,5 +1,5 @@
 from django import forms
-from ferias.models import Feria, Horario, Producto
+from ferias.models import Feria, Horario, Producto, Foto
 
 ''' Acá se crean los forms básicos para el manejo de los modelos '''
 
@@ -29,4 +29,10 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
+        fields = '__all__'
+
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Foto
         fields = '__all__'

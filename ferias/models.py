@@ -15,6 +15,9 @@ locale.setlocale(locale.LC_TIME, '')
 def path_producto(instance, filename):
     return 'producto/{}/{}'.format(instance.nombre_comun, filename)
 
+def path_foto(instance, filename):
+    return 'foto/{}/{}'.format(instance.feria.nombre, filename)
+
 class Producto(models.Model):
     ''' Modelo de un producto, contiene información básica de los diferentes
         productos que se pueden encontrar en las ferias '''
@@ -42,9 +45,13 @@ class Feria(models.Model):
     ''' Modelo principal que contiene la información de las ferias del
         agricultor a nivel nacional '''
 
-    ferias_id = models.CharField(max_length=3, primary_key=True)
-    codigo = models.CharField(max_length=30)
+    feria_id = models.CharField(max_length=3, primary_key=True)
+    codigo_url = models.CharField(max_length=30)
     nombre = models.CharField(max_length=128)
+    conocida_como = models.CharField(max_length=128)
+    comite = models.CharField(max_length=128)
+    administrador = models.CharField(max_length=128)
+    telefono = models.CharField(max_length=15)
     provincia = models.PositiveSmallIntegerField(choices=PROVINCIAS)
     canton = models.CharField(max_length=128)
     distrito = models.CharField(max_length=128)
@@ -52,6 +59,14 @@ class Feria(models.Model):
     latitud = models.FloatField()
     longitud = models.FloatField()
     oferta = models.ManyToManyField(Producto, blank=True)
+    metodo_pago = models.CharField(max_length=128)
+    estacionamiento = models.BooleanField(default=False)
+    parqueo_bicicleta = models.BooleanField(default=False)
+    sanitarios = models.BooleanField(default=False)
+    campo_ferial = models.BooleanField(default=False)
+    bajo_techo = models.BooleanField(default=False)
+    agua_potable = models.BooleanField(default=False)
+    accesibilidad = models.BooleanField(default=False)
 
     class Meta:
         managed = True
@@ -59,21 +74,21 @@ class Feria(models.Model):
         verbose_name = 'Feria del Agricultor'
         verbose_name_plural = 'Ferias del Agricultor'
         ordering = ['nombre']
-    
+
     def get_slug(self):
-        ''' Usamos esta funcion para conseguir el slug ya que 
+        ''' Usamos esta funcion para conseguir el slug ya que
         no se permiten caracteres que no sean ASCII '''
         return slugify(self.codigo)
 
     def abre_hoy(self):
         ''' Verifica si la feria abre hoy (hora server) '''
         abre = False
-        dia = datetime.datetime.now().strftime("%A")[0]        
+        dia = datetime.datetime.now().strftime("%A")[0]
         for horario in self.horarios.all():
             if dia.lower() == horario.dia_inicio[0].lower():
                 abre = True
                 break
-        return abre            
+        return abre
 
     def __str__(self):
         return self.nombre + ", " + self.distrito
@@ -99,3 +114,24 @@ class Horario(models.Model):
     def __str__(self):
         return (self.feria.nombre
                 + " (" + self.dia_inicio + " - " + self.dia_final + ")")
+
+
+class Foto(models.Model):
+    ''' Fotos de las ferias. Pueden ser utilizadas como foto de portada o de
+        perfil '''
+
+    feria = models.ForeignKey(to=Feria, related_name="fotos",
+                              on_delete=models.DO_NOTHING)
+    descripcion = models.CharField(max_length=256)
+    archivo = models.ImageField(upload_to=path_foto)
+    perfil = models.BooleanField(default=False)
+    portada = models.BooleanField(default=False)
+
+    class Meta:
+        managed = True
+        db_table = 'fotos'
+        verbose_name = 'Foto'
+        verbose_name_plural = 'Fotos'
+
+    def __str__(self):
+        return (self.descipcion, + ', ' + self.feria.nombre)
