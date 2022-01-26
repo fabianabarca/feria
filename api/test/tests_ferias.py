@@ -9,7 +9,7 @@ class FeriaTestCase(TestCase):
     def setUp(self):
         Feria.objects.create(
             feria_id='SCA',
-            codigo='San Carlos',
+            codigo_url='San Carlos',
             nombre='Feria de San Carlos',
             provincia=1,
             canton='San Carlos',
@@ -20,7 +20,7 @@ class FeriaTestCase(TestCase):
         )
         Feria.objects.create(
             feria_id='GUA',
-            codigo='Guadalupe',
+            codigo_url='Guadalupe',
             nombre='Feria de Guadalupe',
             provincia=0,
             canton='Goicoechea',
@@ -32,7 +32,7 @@ class FeriaTestCase(TestCase):
 
         self.guada_expected_json = {
             "feria_id": "GUA", "oferta": [], "horarios": [],
-            "codigo": "Guadalupe", "nombre": "Feria de Guadalupe",
+            "codigo_url": "Guadalupe", "nombre": "Feria de Guadalupe",
             "provincia": 0, "canton": "Goicoechea",
             "distrito": "Guadalupe", "direccion": "Direccion 1",
             "latitud": 9.947848, "longitud": -84.055687
@@ -56,7 +56,7 @@ class FeriaTestCase(TestCase):
             self.assertIn('oferta', feria)
             self.assertIn('horarios', feria)
             self.assertIn('nombre', feria)
-            self.assertIn('codigo', feria)
+            self.assertIn('codigo_url', feria)
             self.assertIn('provincia', feria)
             self.assertIn('canton', feria)
             self.assertIn('distrito', feria)
@@ -83,7 +83,7 @@ class FeriaTestCase(TestCase):
         self.assertIn('oferta', result)
         self.assertIn('horarios', result)
         self.assertIn('nombre', result)
-        self.assertIn('codigo', result)
+        self.assertIn('codigo_url', result)
         self.assertIn('provincia', result)
         self.assertIn('canton', result)
         self.assertIn('distrito', result)
@@ -110,7 +110,7 @@ class FeriaTestCase(TestCase):
         self.assertIn('oferta', result[0])
         self.assertIn('horarios', result[0])
         self.assertIn('nombre', result[0])
-        self.assertIn('codigo', result[0])
+        self.assertIn('codigo_url', result[0])
         self.assertIn('provincia', result[0])
         self.assertIn('canton', result[0])
         self.assertIn('distrito', result[0])
@@ -137,7 +137,7 @@ class FeriaTestCase(TestCase):
         self.assertIn('oferta', result[0])
         self.assertIn('horarios', result[0])
         self.assertIn('nombre', result[0])
-        self.assertIn('codigo', result[0])
+        self.assertIn('codigo_url', result[0])
         self.assertIn('provincia', result[0])
         self.assertIn('canton', result[0])
         self.assertIn('distrito', result[0])
@@ -205,7 +205,7 @@ class FeriaTestCase(TestCase):
             self.assertIn('oferta', feria)
             self.assertIn('horarios', feria)
             self.assertIn('nombre', feria)
-            self.assertIn('codigo', feria)
+            self.assertIn('codigo_url', feria)
             self.assertIn('provincia', feria)
             self.assertIn('canton', feria)
             self.assertIn('distrito', feria)
@@ -293,7 +293,7 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)
-            self.assertNotIn('codigo', feria)
+            self.assertNotIn('codigo_url', feria)
             self.assertNotIn('provincia', feria)
             self.assertNotIn('canton', feria)
             self.assertNotIn('distrito', feria)
@@ -321,7 +321,7 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)
-            self.assertNotIn('codigo', feria)
+            self.assertNotIn('codigo_url', feria)
             self.assertNotIn('provincia', feria)
             self.assertNotIn('canton', feria)
             self.assertNotIn('distrito', feria)
@@ -349,7 +349,7 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('oferta', feria)
             self.assertNotIn('horarios', feria)
             self.assertNotIn('nombre', feria)
-            self.assertNotIn('codigo', feria)
+            self.assertNotIn('codigo_url', feria)
             self.assertNotIn('provincia', feria)
             self.assertNotIn('canton', feria)
             self.assertNotIn('distrito', feria)

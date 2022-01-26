@@ -78,7 +78,7 @@ class Feria(models.Model):
     def get_slug(self):
         ''' Usamos esta funcion para conseguir el slug ya que
         no se permiten caracteres que no sean ASCII '''
-        return slugify(self.codigo)
+        return slugify(self.codigo_url)
 
     def abre_hoy(self):
         ''' Verifica si la feria abre hoy (hora server) '''

@@ -24,7 +24,7 @@ generic_response_feria = [{
             "hora_final": "14:15:22Z"
         }
     ],
-    "codigo": "string",
+    "codigo_url": "string",
     "nombre": "string",
     "provincia": 0,
     "canton": "string",
@@ -48,11 +48,11 @@ examples_ferias_list = [
     OpenApiExample(
         'Example 2',
         summary='Get all ferias with specific fields',
-        description='Query params: *?fields=feria_id,codigo,nombre*',
+        description='Query params: *?fields=feria_id,codigo_url,nombre*',
         response_only=True,
         value=[{
             "feria_id": "str",
-            "codigo": "string",
+            "codigo_url": "string",
             "nombre": "string"
         }]
     ),

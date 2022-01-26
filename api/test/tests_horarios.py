@@ -10,7 +10,7 @@ class FeriaTestCase(TestCase):
     def setUp(self):
         feria_sca = Feria.objects.create(
             feria_id='SCA',
-            codigo='San Carlos',
+            codigo_url='San Carlos',
             nombre='Feria de San Carlos',
             provincia=1,
             canton='San Carlos',
