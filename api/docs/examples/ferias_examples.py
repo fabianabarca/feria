@@ -26,12 +26,24 @@ generic_response_feria = [{
     ],
     "codigo_url": "string",
     "nombre": "string",
+    "conocida_como": "string",
+    "comite": "string",
+    "administrador": "string",
+    "telefono": "string",
     "provincia": 0,
     "canton": "string",
     "distrito": "string",
     "direccion": "string",
     "latitud": 0,
-    "longitud": 0
+    "longitud": 0,
+    "metodo_pago": "string",
+    "estacionamiento":  True,
+    "parqueo_bicicleta":  True,
+    "sanitarios": True,
+    "campo_ferial":  True,
+    "bajo_techo": True,
+    "agua_potable": True,
+    "accesibilidad": True
 }]
 
 

@@ -1,3 +1,10 @@
+# ===================================================
+# Aqui se realizan todas las pruebas de unidada
+# relacionadas con el modelo Feria
+#
+# Last modified: 27/01/2022 - Tyron
+# ===================================================
+
 import json
 from django.test import TestCase
 from rest_framework.test import APIClient
@@ -16,27 +23,43 @@ class FeriaTestCase(TestCase):
             distrito='San Carlitos',
             direccion='Direccion 2',
             latitud=25.26526,
-            longitud=-25.26526
+            longitud=-25.26526,            
+            administrador='Admin1',
+            conocida_como='Apodo',
+            comite='comite1',
+            telefono='12345679',
+            metodo_pago='efectivo',
+            estacionamiento=True,
+            parqueo_bicicleta=True,
+            sanitarios=True,
+            campo_ferial=True,
+            bajo_techo=True,
+            agua_potable=True,
+            accesibilidad=True
         )
         Feria.objects.create(
             feria_id='GUA',
-            codigo_url='Guadalupe',
+            codigo_url='guadalupe',
             nombre='Feria de Guadalupe',
             provincia=0,
             canton='Goicoechea',
             distrito='Guadalupe',
             direccion='Direccion 1',
             latitud=9.947848,
-            longitud=-84.055687
+            longitud=-84.055687,
+            administrador='',
+            conocida_como='Mercado libre de Guadalupe',
+            comite='',
+            telefono='',
+            metodo_pago='Efectivo; SINPE',
+            estacionamiento=False,
+            parqueo_bicicleta=False,
+            sanitarios=True,
+            campo_ferial=False,
+            bajo_techo=True,
+            agua_potable=True,
+            accesibilidad=False
         )
-
-        self.guada_expected_json = {
-            "feria_id": "GUA", "oferta": [], "horarios": [],
-            "codigo_url": "Guadalupe", "nombre": "Feria de Guadalupe",
-            "provincia": 0, "canton": "Goicoechea",
-            "distrito": "Guadalupe", "direccion": "Direccion 1",
-            "latitud": 9.947848, "longitud": -84.055687
-            }
 
     def test_get_ferias(self):
         """Test get_ferias"""
@@ -63,6 +86,17 @@ class FeriaTestCase(TestCase):
             self.assertIn('direccion', feria)
             self.assertIn('latitud', feria)
             self.assertIn('longitud', feria)
+            self.assertIn('conocida_como', feria)
+            self.assertIn('comite', feria)
+            self.assertIn('administrador', feria)
+            self.assertIn('metodo_pago', feria)
+            self.assertIn('estacionamiento', feria)
+            self.assertIn('parqueo_bicicleta', feria)
+            self.assertIn('sanitarios', feria)
+            self.assertIn('campo_ferial', feria)
+            self.assertIn('bajo_techo', feria)
+            self.assertIn('agua_potable', feria)
+            self.assertIn('accesibilidad', feria)
 
     def test_get_feria_by_id(self):
         """Test get_ferias_by_id"""
@@ -76,8 +110,7 @@ class FeriaTestCase(TestCase):
 
         # assert
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(result), 11)
-        self.assertEqual(result, self.guada_expected_json)
+        self.assertEqual(len(result), 23)
 
         self.assertIn('feria_id', result)
         self.assertIn('oferta', result)
@@ -104,7 +137,6 @@ class FeriaTestCase(TestCase):
         # assert
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(result), 1)
-        self.assertEqual(result[0], self.guada_expected_json)
 
         self.assertIn('feria_id', result[0])
         self.assertIn('oferta', result[0])
@@ -117,6 +149,17 @@ class FeriaTestCase(TestCase):
         self.assertIn('direccion', result[0])
         self.assertIn('latitud', result[0])
         self.assertIn('longitud', result[0])
+        self.assertIn('conocida_como', result[0])
+        self.assertIn('comite', result[0])
+        self.assertIn('administrador', result[0])
+        self.assertIn('metodo_pago', result[0])
+        self.assertIn('estacionamiento', result[0])
+        self.assertIn('parqueo_bicicleta', result[0])
+        self.assertIn('sanitarios', result[0])
+        self.assertIn('campo_ferial', result[0])
+        self.assertIn('bajo_techo', result[0])
+        self.assertIn('agua_potable', result[0])
+        self.assertIn('accesibilidad', result[0])
 
     def test_get_feria_by_specific_field(self):
         """Test get_ferias_by_specific_field"""
@@ -131,7 +174,6 @@ class FeriaTestCase(TestCase):
         # assert
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(result), 1)
-        self.assertEqual(result[0], self.guada_expected_json)
 
         self.assertIn('feria_id', result[0])
         self.assertIn('oferta', result[0])
@@ -144,6 +186,17 @@ class FeriaTestCase(TestCase):
         self.assertIn('direccion', result[0])
         self.assertIn('latitud', result[0])
         self.assertIn('longitud', result[0])
+        self.assertIn('conocida_como', result[0])
+        self.assertIn('comite', result[0])
+        self.assertIn('administrador', result[0])
+        self.assertIn('metodo_pago', result[0])
+        self.assertIn('estacionamiento', result[0])
+        self.assertIn('parqueo_bicicleta', result[0])
+        self.assertIn('sanitarios', result[0])
+        self.assertIn('campo_ferial', result[0])
+        self.assertIn('bajo_techo', result[0])
+        self.assertIn('agua_potable', result[0])
+        self.assertIn('accesibilidad', result[0])
 
     def test_get_feria_by_specific_field_invalid(self):
         """Test get_ferias_by_specific_invalid"""
@@ -212,6 +265,17 @@ class FeriaTestCase(TestCase):
             self.assertIn('direccion', feria)
             self.assertIn('latitud', feria)
             self.assertIn('longitud', feria)
+            self.assertIn('conocida_como', feria)
+            self.assertIn('comite', feria)
+            self.assertIn('administrador', feria)
+            self.assertIn('metodo_pago', feria)
+            self.assertIn('estacionamiento', feria)
+            self.assertIn('parqueo_bicicleta', feria)
+            self.assertIn('sanitarios', feria)
+            self.assertIn('campo_ferial', feria)
+            self.assertIn('bajo_techo', feria)
+            self.assertIn('agua_potable', feria)
+            self.assertIn('accesibilidad', feria)
 
     def test_get_feria_by_geolocation_invalid(self):
         """Test get_feria_by_geolocation_invalid"""
@@ -300,6 +364,17 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('direccion', feria)
             self.assertIn('latitud', feria)
             self.assertIn('longitud', feria)
+            self.assertNotIn('conocida_como', feria)
+            self.assertNotIn('comite', feria)
+            self.assertNotIn('administrador', feria)
+            self.assertNotIn('metodo_pago', feria)
+            self.assertNotIn('estacionamiento', feria)
+            self.assertNotIn('parqueo_bicicleta', feria)
+            self.assertNotIn('sanitarios', feria)
+            self.assertNotIn('campo_ferial', feria)
+            self.assertNotIn('bajo_techo', feria)
+            self.assertNotIn('agua_potable', feria)
+            self.assertNotIn('accesibilidad', feria)
 
     def test_get_ferias_invalid_specific_fields(self):
         """Test get_ferias_invalid_specific_fields"""
@@ -328,6 +403,17 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('direccion', feria)
             self.assertNotIn('latitud', feria)
             self.assertNotIn('longitud', feria)
+            self.assertNotIn('conocida_como', feria)
+            self.assertNotIn('comite', feria)
+            self.assertNotIn('administrador', feria)
+            self.assertNotIn('metodo_pago', feria)
+            self.assertNotIn('estacionamiento', feria)
+            self.assertNotIn('parqueo_bicicleta', feria)
+            self.assertNotIn('sanitarios', feria)
+            self.assertNotIn('campo_ferial', feria)
+            self.assertNotIn('bajo_techo', feria)
+            self.assertNotIn('agua_potable', feria)
+            self.assertNotIn('accesibilidad', feria)
 
     def test_get_ferias_specific_fields_and_search(self):
         """Test get_ferias_specific_fields_and_search"""
@@ -356,3 +442,14 @@ class FeriaTestCase(TestCase):
             self.assertNotIn('direccion', feria)
             self.assertIn('latitud', feria)
             self.assertIn('longitud', feria)
+            self.assertNotIn('conocida_como', feria)
+            self.assertNotIn('comite', feria)
+            self.assertNotIn('administrador', feria)
+            self.assertNotIn('metodo_pago', feria)
+            self.assertNotIn('estacionamiento', feria)
+            self.assertNotIn('parqueo_bicicleta', feria)
+            self.assertNotIn('sanitarios', feria)
+            self.assertNotIn('campo_ferial', feria)
+            self.assertNotIn('bajo_techo', feria)
+            self.assertNotIn('agua_potable', feria)
+            self.assertNotIn('accesibilidad', feria)

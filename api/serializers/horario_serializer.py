@@ -8,7 +8,7 @@
 from rest_framework.serializers import ModelSerializer
 from drf_spectacular.utils import extend_schema_serializer
 from ferias.models import Horario
-from api.docs.examples.horarios import examples_horarios_list
+from api.docs.examples.horarios_examples import examples_horarios_list
 
 
 @extend_schema_serializer(

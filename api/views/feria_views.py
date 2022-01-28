@@ -1,8 +1,7 @@
 # ===================================================
 # Clases encargadas del API relacionado a Feria
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 29/11/2021
+# Last modified: 26/01/2022 - Tyron
 # ===================================================
 
 from rest_framework import generics, filters
@@ -13,7 +12,7 @@ from ferias.utils import is_in_radius
 from api.serializers.feria_serializer import FeriaSerializer
 from api.views.utils import DynamicFieldsViewMixin
 from api.docs.params.parameters import optional_params
-from api.docs.params.ferias import ferias_params
+from api.docs.params.ferias_params import ferias_params
 
 
 @extend_schema(
@@ -31,6 +30,9 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
     serializer_class = FeriaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['provincia', 'canton', 'distrito',
+                        'metodo_pago', 'estacionamiento', 'parqueo_bicicleta',
+                        'sanitarios', 'campo_ferial', 'bajo_techo',
+                        'agua_potable', 'accesibilidad',
                         'horarios__dia_inicio', 'horarios__dia_final',
                         'horarios__hora_inicio', 'horarios__hora_final']
     search_fields = ['nombre', 'provincia',

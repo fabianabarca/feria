@@ -1,8 +1,7 @@
 # ===================================================
 # Clases encargadas del API relacionado a Producto
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 29/11/2021
+# Last modified: 27/01/2022 - Tyron
 # ===================================================
 
 from rest_framework import generics, filters
@@ -12,7 +11,7 @@ from ferias.models import Producto
 from api.serializers.producto_serializer import ProductoSerializer
 from api.views.utils import DynamicFieldsViewMixin
 from api.docs.params.parameters import optional_params
-from api.docs.params.productos import productos_params
+from api.docs.params.productos_params import productos_params
 
 
 @extend_schema(

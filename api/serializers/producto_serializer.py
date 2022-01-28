@@ -9,7 +9,7 @@ from rest_framework.serializers import ModelSerializer
 from drf_spectacular.utils import extend_schema_serializer
 from ferias.models import Producto
 from api.serializers.utils import DynamicFieldsSerializerMixin
-from api.docs.examples.productos import examples_productos_list
+from api.docs.examples.productos_examples import examples_productos_list
 
 
 @extend_schema_serializer(
