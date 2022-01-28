@@ -20,13 +20,14 @@ def ferias_detail(request, feria_id, slug = None):
     horarios = json.loads(serializers.serialize("json", feria.horarios.all()))
     context = {
         'feria': feria,
-        'horarios': json.dumps(horarios)
+        'horarios': json.dumps(horarios),
+        'fotos': feria.fotos.all()
         }
     return render(request, 'ferias_detail.html',context)
 
 def ferias(request):
     query = Q()
-    # Input search
+    # Input search. We use a OR operator
     query |= Q(nombre__icontains=request.GET.get('search', ''))
     query |= Q(provincia=get_provincia_num(request.GET.get('search', '')))
     query |= Q(canton__icontains=request.GET.get('search', ''))
@@ -35,7 +36,7 @@ def ferias(request):
     query |= Q(comite__icontains=request.GET.get('search', ''))
     query |= Q(administrador__icontains=request.GET.get('search', ''))
 
-    # Filters
+    # Filters. We use a AND operator
     if 'provincia' in request.GET:
         query &= Q(provincia=request.GET.get('provincia', 0))
     if 'canton' in request.GET:
@@ -83,4 +84,4 @@ def ferias(request):
     context = {
         'ferias': ferias_paged
         }
-    return render(request, 'ferias.html', context)
+    return render(request, 'ferias_list.html', context)

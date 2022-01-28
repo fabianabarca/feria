@@ -26,3 +26,12 @@
 .card-img{
     border-radius: var(--card-border-radius) var(--card-border-radius) 0px 0px;
 }
+
+.text-centered {
+    text-align: center;
+}
+
+/* ferias_detail.html */
+#comodidades {
+    font-size: 0.9em;
+}
