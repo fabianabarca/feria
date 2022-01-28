@@ -31,8 +31,9 @@ def ferias(request):
     query |= Q(provincia=get_provincia_num(request.GET.get('search', '')))
     query |= Q(canton__icontains=request.GET.get('search', ''))
     query |= Q(distrito__icontains=request.GET.get('search', ''))
-    # query |= Q(conocida_como__icontains=request.GET.get('search', ''))
-    # query |= Q(comite__icontains=request.GET.get('search', ''))
+    query |= Q(conocida_como__icontains=request.GET.get('search', ''))
+    query |= Q(comite__icontains=request.GET.get('search', ''))
+    query |= Q(administrador__icontains=request.GET.get('search', ''))
 
     # Filters
     if 'provincia' in request.GET:
@@ -41,10 +42,10 @@ def ferias(request):
         query &= Q(canton=request.GET.get('canton', ''))
     if 'distrito' in request.GET:
         query &= Q(distrito=request.GET.get('distrito', ''))
-    if 'parqueo' in request.GET:
-        query &= Q(parqueo=request.GET.get('parqueo', 1))
-    if 'parqueo_bici' in request.GET:
-        query &= Q(parqueo_bici=request.GET.get('parqueo_bici', 1))
+    if 'estacionamiento' in request.GET:
+        query &= Q(estacionamiento=request.GET.get('estacionamiento', 1))
+    if 'parqueo_bicicleta' in request.GET:
+        query &= Q(parqueo_bicicleta=request.GET.get('parqueo_bicicleta', 1))
     if 'sanitarios' in request.GET:
         query &= Q(sanitarios=request.GET.get('sanitarios', 1))
     if 'bajo_techo' in request.GET:
