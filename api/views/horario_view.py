@@ -1,8 +1,7 @@
 # ===================================================
 # Clases encargadas del API relacionado a Feria
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 29/11/2021
+# Last modified: 27/01/2022 - Tyron
 # ===================================================
 
 from django.http import Http404
@@ -11,7 +10,7 @@ from rest_framework import generics
 from drf_spectacular.utils import extend_schema
 from ferias.models import Horario
 from api.serializers.horario_serializer import HorarioSerializer
-from api.docs.params.horarios import horarios_params
+from api.docs.params.horarios_params import horarios_params
 
 
 class HorarioDetail(generics.RetrieveAPIView):
@@ -20,7 +19,7 @@ class HorarioDetail(generics.RetrieveAPIView):
     def get_object(self, pk):
         '''Traer de la base de datos un horario dado el ID (pk) de la Feria'''
         try:
-            return Horario.objects.filter(feria__ferias_id=pk).all()
+            return Horario.objects.filter(feria__feria_id=pk).all()
         except Horario.DoesNotExist:
             raise Http404
 

@@ -129,6 +129,7 @@ function setParamsFromQuery() {
         var input = allInputs[i];
         if (params[input.name] !== undefined) {
             input.value = params[input.name];
+            input.click(); //Para checkboxs
             if (input.name !== "lat" && input.name !== "lon" 
                 && input.name !== "radius" && input.name !== "search")
             {

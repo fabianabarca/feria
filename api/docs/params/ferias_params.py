@@ -2,8 +2,7 @@
 # Aqui guardaremos los paremetros genericos de cada
 # la vista Ferias del API
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 02/12/2021
+# Last modified: 27/01/2022 - Tyron
 # ===================================================
 
 from drf_spectacular.utils import OpenApiParameter, OpenApiExample
@@ -35,6 +34,33 @@ ferias_params = [
         + 'to get all Fairs given the geolocation that the user pass.',
         required=False,
         type=OpenApiTypes.INT
+    ),
+    OpenApiParameter(
+        name='metodo_pago',
+        location=OpenApiParameter.QUERY,
+        description='Get a list of Ferias give the method of payment',
+        required=False,
+        type=OpenApiTypes.STR,
+        examples=[
+            OpenApiExample(
+                'Example 1: OnlyCash',
+                summary='Search Ferias that only accept cash as payment',
+                description='',
+                value='efectivo'
+            ),
+            OpenApiExample(
+                'Example 2: OnlyCash + SINPE',
+                summary='Search Ferias that only accept cash or SINPE as payment',
+                description='',
+                value='efectivo;SINPE'
+            ),
+            OpenApiExample(
+                'Example 3: OnlyCash + SINPE + Debit/Credit card',
+                summary='Search Ferias that only accept cash or SINPE or Debit/Credit card has payment',
+                description='',
+                value='efectivo;SINPE;tarjeta'
+            ),
+        ]
     ),
     OpenApiParameter(
         name='search',

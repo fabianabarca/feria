@@ -5,7 +5,7 @@ from ferias.models import Feria, Horario, Producto, Foto
 
 
 class FeriaForm(forms.ModelForm):
-    ferias_id = forms.CharField(
+    feria_id = forms.CharField(
         required=True,
         help_text="Introduzca 3 caracteres que representen esta feria. Ej: "
                   " Feria de San Carlos = SCA")
@@ -32,7 +32,7 @@ class ProductoForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ProductoForm(forms.ModelForm):
+class FotoForm(forms.ModelForm):
     class Meta:
         model = Foto
         fields = '__all__'

@@ -11,7 +11,7 @@ from ferias.models import Feria
 from api.serializers import producto_serializer as ps
 from api.serializers import horario_serializer as hs
 from api.serializers.utils import DynamicFieldsSerializerMixin
-from api.docs.examples.ferias import examples_ferias_list
+from api.docs.examples.ferias_examples import examples_ferias_list
 
 
 @extend_schema_serializer(

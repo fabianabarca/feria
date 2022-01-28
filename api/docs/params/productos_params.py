@@ -2,8 +2,7 @@
 # Aqui guardaremos los paremetros genericos de cada
 # la vista Productos del API
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 02/12/2021
+# Last modified: 27/01/2022 - Tyron
 # ===================================================
 
 from drf_spectacular.utils import OpenApiParameter, OpenApiExample

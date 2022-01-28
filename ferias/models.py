@@ -48,7 +48,7 @@ class Feria(models.Model):
     feria_id = models.CharField(max_length=3, primary_key=True)
     codigo_url = models.CharField(max_length=30)
     nombre = models.CharField(max_length=128)
-    conocida_como = models.CharField(max_length=128)
+    conocida_como = models.CharField(max_length=128, blank=True)
     comite = models.CharField(max_length=128)
     administrador = models.CharField(max_length=128)
     telefono = models.CharField(max_length=15)
@@ -78,7 +78,7 @@ class Feria(models.Model):
     def get_slug(self):
         ''' Usamos esta funcion para conseguir el slug ya que
         no se permiten caracteres que no sean ASCII '''
-        return slugify(self.codigo)
+        return slugify(self.codigo_url)
 
     def abre_hoy(self):
         ''' Verifica si la feria abre hoy (hora server) '''
@@ -134,4 +134,4 @@ class Foto(models.Model):
         verbose_name_plural = 'Fotos'
 
     def __str__(self):
-        return (self.descipcion, + ', ' + self.feria.nombre)
+        return (self.descripcion + ', ' + self.feria.nombre)
