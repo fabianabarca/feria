@@ -34,6 +34,7 @@ Esta sección define los términos que se utilizan en este documento.
 - **Longitud**: longitud WGS84 en grados decimales. El valor debe ser mayor o igual a -180.0 y menor o igual a 180.0. Ejemplo: 12.492269 para el Coliseo de Roma.
 - **Flotante no negativo**: un número de punto flotante (es decir, decimal) mayor o igual que 0.
 - **Entero no negativo**: un número entero mayor o igual que 0.
+- **Bool**: valor que solo tiene dos posibles estados *true* representado por un 1 o *false* por un 0.
 - **Número de teléfono**: un número de teléfono.
 - **Hora**: hora en el formato *HH:MM:SS* (también se acepta *H:MM:SS*). Ejemplo: 14:30:00 para las 2:30 p.m.
 - **Texto**: una cadena de caracteres UTF-8, cuyo objetivo es mostrarse y que, por lo tanto, debe ser legible por humanos.
@@ -61,6 +62,8 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `canton`           | Entero              | R           | 1 - Abangares, 2 - Acosta, 3 - Alajuelita, 4 - Alvarado, 5 - Aserrí, 6 - Atenas, 7 - Bagaces ... 82 - Zarcero.       |
 | `distrito`         | Texto               | R           | Nombre del distrito en el que se realiza la feria. Ejemplo: Colón.                                   |
 | `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
+| `latitud`          | Latitud             | R           | Valor númerico, decimal y positivo de la Latitud de la Feria. Ejemplo: 10.013534238571.              |
+| `longitud`         | Longitud            | R           | Valor númerico, decimal y negativo de la Longitud de la Feria. Ejemplo: -84.2190568571068.           |
 | `estacionamiento`  | Entero              | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.|
 | `parqueo_bicicleta`| Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `sanitarios`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
