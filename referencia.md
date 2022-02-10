@@ -70,7 +70,7 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `campo_ferial`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `bajo_techo`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `agua_potable`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
-| `metodos_pago`     |                     | R           |                                                                                                      |
+| `metodos_pago`     | Entero              | R           | En caso de que varios de los locales acepten: 1 - Efectivo, 2 - Efectivo y SINPE, 3 - Efectivo, SINPE Y TARJETA|
 
 ### Horarios <a name="horarios"></a>
 
@@ -97,6 +97,19 @@ Fotos de la feria.
 | `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
 | `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
+
+### Area <a name="area"></a>
+
+
+Datos para mapear la feria.
+
+| Campo         | Tipo     | Obligatorio | Descripción                                                                             |
+|---------------|----------|--------------|----------------------------------------------------------------------------------------|
+| `feria_id`    | ID       | R           | Un ID de la tabla de ferias que indica a cuál corresponde el area.                      |
+| `lat_pt`      | Latitud  | R           |                                                                                         |
+| `lon_pt`      | Longitud | R           |                                                                                         |
+
+
 
 ### Productos <a name="productos"></a>
 
