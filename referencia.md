@@ -59,7 +59,7 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `administrador`    | Texto               | R           | Nombre del ente local administrador de la feria. Ejemplo: CAC de Mora.                               |
 | `telefono`         | Número de teléfono  | R           | Número de telefono del representante del ente local administrador de la feria. Ejemplo: 24185712.    |
 | `provincia`        | Entero              | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
-| `canton`           | Entero              | R           | 1 - Abangares, 2 - Acosta, 3 - Alajuelita, 4 - Alvarado, 5 - Aserrí, 6 - Atenas, 7 - Bagaces ... 82 - Zarcero.       |
+| `canton`           | Texto               | R           | Nombre del cantón en donde se ubica la feria. Ejemplo: Santa Ana.                                    |
 | `distrito`         | Texto               | R           | Nombre del distrito en el que se realiza la feria. Ejemplo: Colón.                                   |
 | `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
 | `latitud`          | Latitud             | R           | Valor númerico, decimal y positivo de la Latitud de la Feria. Ejemplo: 10.013534238571.              |
@@ -70,7 +70,8 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `campo_ferial`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `bajo_techo`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `agua_potable`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
-| `metodos_pago`     | Entero              | R           | En caso de que varios de los locales acepten: 1 - Efectivo, 2 - Efectivo y SINPE, 3 - Efectivo, SINPE Y TARJETA|
+| `metodos_pago`     | Texto               | R           | Métodos de pago aceptados en la feria. Ejemplo: Efectivo y SINPE.                                    |
+| `accesibilidad`    | Bool                | R           | 0 - No cumple con la ley 7600 , 1 - Sí cumple con la ley 7600.                                       | 
 
 ### Horarios <a name="horarios"></a>
 
