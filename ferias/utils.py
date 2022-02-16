@@ -16,7 +16,7 @@ PROVINCIAS = (
     (3, 'Heredia'),
     (4, 'Guanacaste'),
     (5, 'Puntarenas'),
-    (6, 'Limon')
+    (6, 'Limón')
 )
 
 DIAS_SEMANA = (
