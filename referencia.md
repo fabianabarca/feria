@@ -59,7 +59,7 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `administrador`    | Texto               | R           | Nombre del ente local administrador de la feria. Ejemplo: CAC de Mora.                               |
 | `telefono`         | Número de teléfono  | R           | Número de telefono del representante del ente local administrador de la feria. Ejemplo: 24185712.    |
 | `provincia`        | Entero              | R           | 1 - San José, 2 - Alajuela, 3 - Cartago, 4 - Heredia, 5 - Guanacaste, 6 - Puntarenas, 7 - Limón.     |
-| `canton`           | Entero              | R           | 1 - Abangares, 2 - Acosta, 3 - Alajuelita, 4 - Alvarado, 5 - Aserrí, 6 - Atenas, 7 - Bagaces ... 82 - Zarcero.       |
+| `canton`           | Texto               | R           | Nombre del cantón en donde se ubica la feria. Ejemplo: Santa Ana.                                    |
 | `distrito`         | Texto               | R           | Nombre del distrito en el que se realiza la feria. Ejemplo: Colón.                                   |
 | `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
 | `latitud`          | Latitud             | R           | Valor númerico, decimal y positivo de la Latitud de la Feria. Ejemplo: 10.013534238571.              |
@@ -70,7 +70,8 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `campo_ferial`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `bajo_techo`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `agua_potable`     | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
-| `metodos_pago`     |                     | R           |                                                                                                      |
+| `metodos_pago`     | Texto               | R           | Métodos de pago aceptados en la feria. Ejemplo: Efectivo y SINPE.                                    |
+| `accesibilidad`    | Bool                | R           | 0 - No cumple con la ley 7600 , 1 - Sí cumple con la ley 7600.                                       | 
 
 ### Horarios <a name="horarios"></a>
 
@@ -97,6 +98,19 @@ Fotos de la feria.
 | `archivo`     | *Path* | R           | 1 - lunes, 2 - martes, 3 - miércoles, 4 - jueves, 5 - viernes, 6 - sábado, 7 - domingo |
 | `perfil`      | Bool   | R           | 0 - No es la foto de perfil, 1 - Sí es la foto de perfil                               |
 | `portada`     | Bool   | R           | 0 - No es la foto de portada, 1 - Sí es la foto de portada                             |
+
+### Area <a name="area"></a>
+
+
+Datos para mapear la feria.
+
+| Campo         | Tipo     | Obligatorio | Descripción                                                                             |
+|---------------|----------|--------------|----------------------------------------------------------------------------------------|
+| `feria_id`    | ID       | R           | Un ID de la tabla de ferias que indica a cuál corresponde el area.                      |
+| `lat_pt`      | Latitud  | R           |                                                                                         |
+| `lon_pt`      | Longitud | R           |                                                                                         |
+
+
 
 ### Productos <a name="productos"></a>
 
