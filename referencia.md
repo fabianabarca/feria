@@ -65,6 +65,7 @@ Información general básica de cada feria, incluyendo ubicación e infraestruct
 | `direccion`        | Texto               | R           | Referencia geográfica para poder localizar la feria. Ejemplo: Antiguo Mercado de Ciudad Colón.       |
 | `latitud`          | Latitud             | R           | Valor númerico, decimal y positivo de la Latitud de la Feria. Ejemplo: 10.013534238571.              |
 | `longitud`         | Longitud            | R           | Valor númerico, decimal y negativo de la Longitud de la Feria. Ejemplo: -84.2190568571068.           |
+| `tamano`           | Texto               | O           | Según puestos: P - pequeño (X<60), M - mediano (60<X<100), G - grande (100<X<200), XG - (X>200)      |
 | `estacionamiento`  | Entero              | R           | 0 - No hay, 1 - En la calle, 2 - Estacionamiento público, 3 - Estacionamiento privado, 4 - Estacionamiento municipal.|
 | `parqueo_bicicleta`| Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
 | `sanitarios`       | Bool                | R           | 0 - No hay, 1 - Sí hay.                                                                              |
@@ -101,7 +102,6 @@ Fotos de la feria.
 
 ### Área <a name="area"></a>
 
-
 Datos para mapear la feria.
 
 | Campo         | Tipo     | Requerido   | Descripción                                                                             |
@@ -127,4 +127,4 @@ Lista de productos disponibles en las ferias.
 
 (Propuesta) 
 
-Al lanzamiento, llamar a la creación de aplicaciones de parte de desarrolladores, que utilicen la información de la base de datos.
+Al lanzamiento, llamar a la creación de aplicaciones de parte de otros desarrolladores, que utilicen la información de la base de datos.
