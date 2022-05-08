@@ -12,11 +12,14 @@ locale.setlocale(locale.LC_TIME, '')
 ''' Acá se crean los modelos base de las Ferias, junto con toda la información
     relevante de ellas '''
 
+
 def path_producto(instance, filename):
     return 'producto/{}/{}'.format(instance.nombre_comun, filename)
 
+
 def path_foto(instance, filename):
     return 'foto/{}/{}'.format(instance.feria.nombre, filename)
+
 
 class Producto(models.Model):
     ''' Modelo de un producto, contiene información básica de los diferentes
@@ -30,12 +33,24 @@ class Producto(models.Model):
     icono = models.ImageField(upload_to=path_producto)
     descripcion = models.TextField()
     temporada = models.TextField()
+    precio = models.FloatField(default=0.0)
 
     class Meta:
         managed = True
         db_table = 'productos'
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
+
+    def getJson(self):
+       ''' Conseguir una version json del modelo'''
+       return {
+           "id": self.id,
+           "nombre_cientifico": self.nombre_cientifico,
+           "nombre_comun": self.nombre_comun,
+           "imagen": self.imagen.url,
+           "icono": self.icono.url,
+           "precio": self.precio
+       }
 
     def __str__(self):
         return self.nombre_comun
