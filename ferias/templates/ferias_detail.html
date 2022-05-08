@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+{% load l10n %}
+
+{% block title %}{{feria.nombre}}{% endblock title %}
+
+{% block styles %}
+{% endblock %}
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- ===========  Carousel =========== -->
+        {% if feria.fotos.all.count > 0 %}
+        <div class="col-md-12" id="carouselSection">
+            <div id="carouselImgsFeria" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for i in feria.fotos.all %}
+                    <script>console.log('{{forloop.counter0}}');</script>
+                    <button type="button" data-bs-target="#carouselImgsFeria" data-bs-slide-to="{{forloop.counter0}}"
+                        class="{% if i.perfil == True %} active {% endif %}"
+                        aria-current="{% if i.perfil == True %} true {% endif %}"
+                        aria-label="{{i.descripcion}}"></button>
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    {% for i in feria.fotos.all %}
+                    <div class="carousel-item {% if i.perfil == True %} active {% endif %}">
+                        <img src="{{ MEDIA_URL }}{{i.archivo}}" alt="{{i.descripcion}}"
+                            class="w-100 d-inline-block"
+                            style="max-height: 40vh;object-fit: cover;"
+                            loading="lazy">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImgsFeria"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselImgsFeria"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        {% endif %}
+        <!-- ===========  Info Feria =========== -->
+        <div class="col-md-4" id="info-feria">
+            <h1>{{feria.nombre}}</h1>
+            {% if feria.abre_hoy %}
+            <span class="badge bg-success">Abre hoy</span>
+            {% else %}
+            <span class="badge bg-danger">Cerrado hoy</span>
+            {% endif %}
+            <p class="text-muted">
+                <i class="bi bi-geo"></i>
+                {{feria.get_provincia_display}}, {{feria.canton}}, {{feria.distrito}}
+            </p>
+            <small><i class="bi bi-geo-alt"></i> Dirección exacta:</small>
+            <p class="text-muted">
+                {{feria.direccion}}
+                <br>
+                <a class="btn btn-info btn-sm" target="_blank"
+                    href="https://www.google.com/maps/search/?api=1&query={{feria.latitud|unlocalize}},{{feria.longitud|unlocalize}}">
+                    <i class="bi bi-map"></i> Ver en Google Maps
+                </a>
+            </p>
+            <small><i class="bi bi-clock"></i> Horario:</small>
+            <ul id="horarios-section">
+            </ul>
+        </div>
+        <!-- ===========  Info Productos de la Feria =========== -->
+        <div class="col-md-8" id="info-productos">
+            <!-- Comodidades que ofrece la feria -->
+            <div id="comodidades" class="text-centered pt-3">
+                <div class="hstack gap-3">
+                    <!-- Metodo pago -->
+                    {% if feria.metodo_pago != '' %}                    
+                    <div class="">
+                        <span class="material-icons">
+                            paid
+                        </span><br>
+                        <small>{{feria.metodo_pago}}</small>
+                    </div>
+                    {% endif %}
+                    <!-- Estacionamiento -->
+                    {% if feria.estacionamiento != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            local_parking
+                        </span><br>
+                        <small>Estacionamiento</small>
+                    </div>
+                    {% endif %}
+                    <!-- Parqueo bici -->
+                    {% if feria.parqueo_bicicleta != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            pedal_bike
+                        </span><br>
+                        <small>Parqueo Bicicleta</small>
+                    </div>
+                    {% endif %}
+                    <!-- Sanitarios -->
+                    {% if feria.sanitarios != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            wc
+                        </span><br>
+                        <small>Sanitarios</small>
+                    </div>
+                    {% endif %}
+                    <!-- Bajo techo -->
+                    {% if feria.bajo_techo != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            umbrella
+                        </span><br>
+                        <small>Bajo techo</small>
+                    </div>
+                    {% endif %}
+                    <!-- Agua potable -->
+                    {% if feria.agua_potable != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            local_drink
+                        </span><br>
+                        <small>Agua potable</small>
+                    </div>
+                    {% endif %}
+                    <!-- Ley 7600 -->
+                    {% if feria.accesibilidad != 0 %}
+                    <div class="">
+                        <span class="material-icons">
+                            accessible
+                        </span><br>
+                        <small>Ley 7600</small>
+                    </div>
+                    {% endif %}
+                </div>
+                
+            </div>
+            {% if feria.oferta.count > 0 %}
+            <h5>Productos que se venden en esta feria</h5>
+            <div class="row">
+            {% for producto in feria.oferta.all %}
+            <!-- ===========  Info de Producto espeficico =========== -->
+            <div class="col-md-3">
+                <div class="card-feria" >
+                    <a href="#" target="_blank">
+                        <img src="{{producto.imagen.url}}" loading="lazy"
+                            alt="Imagen de {{producto.nombre_comun}}"
+                            class="img-fluid card-img"
+                            style="width:100%;max-height: 100px;object-fit: cover;">
+                    </a>
+                    <div class="card-feria-container">
+                        <a href="#">
+                            <h6><b>{{producto.nombre_comun}}</b></h6>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <br>
+            <div class="alert alert-info" role="alert">
+                Esta feria no tiene productos asociados comuniquese con el administrador de esta página.
+                <a href="#">Contacto</a>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptsEnd %}
+<script>
+    const horarios = JSON.parse('{{horarios | safe}}');
+    const horarioSection = document.getElementById('horarios-section');
+    horarios.forEach(dia => {
+        let horarioStr = '';
+        let li = document.createElement('li');
+        horarioStr += dias_dict[dia.fields.dia_inicio] + ': ';
+        horarioStr += convertToAMPM(dia.fields.hora_inicio) + ' - ' + convertToAMPM(dia.fields.hora_final);
+        li.innerHTML = horarioStr;
+        horarioSection.appendChild(li);
+    });
+</script>
+{% endblock %}

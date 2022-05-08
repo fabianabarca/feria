@@ -3,7 +3,7 @@ from drf_spectacular.utils import OpenApiExample
 
 # Respuesta generica de ferias
 generic_response_feria = [{
-    "ferias_id": "str",
+    "feria_id": "str",
     "oferta":
     [
         {
@@ -24,14 +24,26 @@ generic_response_feria = [{
             "hora_final": "14:15:22Z"
         }
     ],
-    "codigo": "string",
+    "codigo_url": "string",
     "nombre": "string",
+    "conocida_como": "string",
+    "comite": "string",
+    "administrador": "string",
+    "telefono": "string",
     "provincia": 0,
     "canton": "string",
     "distrito": "string",
     "direccion": "string",
     "latitud": 0,
-    "longitud": 0
+    "longitud": 0,
+    "metodo_pago": "string",
+    "estacionamiento":  True,
+    "parqueo_bicicleta":  True,
+    "sanitarios": True,
+    "campo_ferial":  True,
+    "bajo_techo": True,
+    "agua_potable": True,
+    "accesibilidad": True
 }]
 
 
@@ -48,11 +60,11 @@ examples_ferias_list = [
     OpenApiExample(
         'Example 2',
         summary='Get all ferias with specific fields',
-        description='Query params: *?fields=ferias_id,codigo,nombre*',
+        description='Query params: *?fields=feria_id,codigo_url,nombre*',
         response_only=True,
         value=[{
-            "ferias_id": "str",
-            "codigo": "string",
+            "feria_id": "str",
+            "codigo_url": "string",
             "nombre": "string"
         }]
     ),

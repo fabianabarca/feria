@@ -1,38 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Explorador{% endblock title %}
+{% block title %}Buscador{% endblock title %}
 
 {% block styles %}
-<style>
-    /* Variables */    
-    :root {
-        --card-border-radius: 16px;
-    }
-    
-    /* Rotar flecha del boton de Filtros */
-    .dropdown-toggle[aria-expanded="true"]:after {
-        transform: rotate(180deg); 
-    }
-    .dropdown-toggle:after { 
-        transition: 0.2s; 
-    }
-    /* Estilos de las cards de ferias */
-    .card-feria{
-        border-radius: var(--card-border-radius);
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-    }
-    .card-feria:hover {
-        box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-    }
-    .card-feria-container{
-        padding: 16px 16px;
-    }
-    .card-img{
-        border-radius: var(--card-border-radius) var(--card-border-radius) 0px 0px;
-    }
-</style>
 {% endblock %}
 {% block scripts %}
 {% endblock %}
@@ -41,30 +12,21 @@
 <div class="container">
     <div class="row">
         <div id="filters" class="col-md-4 pt-2">
+            <h6 class="text-muted">Buscador normal</h6>
             <form id="buscador" class="form-inline" method="get" action="/ferias" accept-charset="utf-8" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="search" aria-describedby="searchHelp"
-                            placeholder="Ingrese el nombre o comite" name="search">
+                            placeholder="Nombre, comite o administrador" name="search">
                         <button type="submit" class="btn btn-primary" value="submit" onclick="normalSearch();"><i class="bi bi-search"></i> Buscar</button>
                     </div>
                 </div>
                 <!-- ======== Inicio - Filtros  ======== -->
                 <div>
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    <a id="dropdown-filter" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                         <i class="bi bi-sliders"></i> Filtros <span class="badge rounded-pill bg-danger ms-1" id="badge-filtros"></span>
                     </a>
-                    <a class="btn btn-primary sm" onclick="getLocation();"><i class="bi bi-geo-alt"></i> Usar mi ubicación</a>
-                    <input type="text" id="lat" name="lat" hidden />
-                    <input type="text" id="lon" name="lon" hidden />
-                    <div style="display: none;" id="radiusGroup">
-                        <label for="radius" class="form-label">
-                            Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
-                        </label>
-                        <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
-                            onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
-                        <button type="submit" class="btn btn-primary" value="submit"><i class="bi bi-search"></i> Buscar con mi ubicación</button>
-                    </div>
+                    <a class="btn btn-primary sm" onclick="getLocation();"><i class="bi bi-geo-alt"></i> Usar mi ubicación</a>                    
                     <div class="collapse p-4" style="min-width: 90%;" id="collapseFilters">
                         <h5>Filtros de búsqueda</h5>
                         <div class="accordion">
@@ -106,42 +68,42 @@
                                 aria-labelledby="headingTwo">
                                 <div class="accordion-body">
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="parqueo" value="1" name="parqueo" disabled>
-                                        <label class="form-check-label" for="parqueo">Parqueo</label>
-                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar ferias con parqueo"></i>
+                                        <input class="form-check-input" type="checkbox" id="estacionamiento" value="1" name="estacionamiento">
+                                        <label class="form-check-label" for="estacionamiento">Estacionamiento</label>
+                                        <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Buscar ferias con estacionamiento"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="parqueo_bici" value="1" name="parqueo_bici" disabled>
-                                        <label class="form-check-label" for="parqueo_bici">Parqueo Bicicletas</label>
+                                        <input class="form-check-input" type="checkbox" id="parqueo_bicicleta" value="1" name="parqueo_bicicleta">
+                                        <label class="form-check-label" for="parqueo_bicicleta">Parqueo Bicicletas</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias con parqueo para bicicletas"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="sanitarios" value="1" name="sanitarios" disabled>
+                                        <input class="form-check-input" type="checkbox" id="sanitarios" value="1" name="sanitarios">
                                         <label class="form-check-label" for="sanitarios">Servicios Sanitarios</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias con servicios sanitarios"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="bajo_techo" value="1" name="bajo_techo" disabled>
+                                        <input class="form-check-input" type="checkbox" id="bajo_techo" value="1" name="bajo_techo">
                                         <label class="form-check-label" for="bajo_techo">Bajo Techo</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias que esten bajo techo"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="campo_ferial" value="1" name="campo_ferial" disabled>
+                                        <input class="form-check-input" type="checkbox" id="campo_ferial" value="1" name="campo_ferial">
                                         <label class="form-check-label" for="campo_ferial">Campo Ferial</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias que esten en un campo ferial"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="agua_potable" value="1" name="agua_potable" disabled>
+                                        <input class="form-check-input" type="checkbox" id="agua_potable" value="1" name="agua_potable">
                                         <label class="form-check-label" for="agua_potable">Agua Potable</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias que cuenten con agua potable"></i>
                                     </div>
                                     <div class="form-check ">
-                                        <input class="form-check-input" type="checkbox" id="accesibilidad" value="1" name="accesibilidad" disabled>
+                                        <input class="form-check-input" type="checkbox" id="accesibilidad" value="1" name="accesibilidad">
                                         <label class="form-check-label" for="accesibilidad">Accesibilidad</label>
                                         <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Buscar ferias que cumplan la ley 7600"></i>
@@ -153,28 +115,67 @@
                         <button type="submit" class="btn btn-secondary m-1" onclick="limpiarFiltros();"><i class="bi bi-eraser"></i> Limpiar
                             filtros</button>
                     </div>
+                    <input type="text" id="lat" name="lat" hidden />
+                    <input type="text" id="lon" name="lon" hidden />
+                    <div style="display: none;" id="radiusGroup">
+                        <hr />
+                        <h6 class="text-muted">Buscador por geolocalización <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Se crea un radio y selecciona las ferias que se encuentren en ese radio."></i></h6>
+                        <label for="radius" class="form-label">
+                            Seleccione el radio de la búsqueda en KM: <small id="radioText">1</small>
+                        </label>
+                        <input type="range" class="form-range" id="radius" name="radius" min="1000" max="50000" step="1000"
+                            onchange="updateRadiusInput(this.value);" oninput="updateRadiusInput(this.value);" value="0">
+                        <button type="submit" class="btn btn-primary" value="submit"><i class="bi bi-search"></i> Buscar con mi
+                            ubicación</button>
+                        <br>                            
+                        <div class="alert alert-info" role="alert">
+                            <i class="bi bi-info-circle"></i>
+                            <small>No se toma en cuenta la distancia basada en carreras y/o elevaciones.</small>
+                        </div>
+                    </div>
                 </div>
                 <!-- ======== Fin - Filtros  ======== -->
             </form>
         </div>
+        <!-- ============ Lista de ferias ============ -->
         <div id="ferias-list" class="col-md-8 pt-1">
                 <div class="row"> 
                     {% if ferias.object_list.count > 0 %}
                     <h6 class="text-muted">Mostrando {{ ferias.start_index }}-{{ ferias.end_index }} de un total de {{ ferias.paginator.count }} ferias</h6>
                         {% for feria in ferias %}
-                        <div class="col-12 p-2">
+                        <div class="col-6 p-2">
                             <div class="card-feria">
-                                <a href="{{feria.ferias_id}}" target="_blank">
-                                    <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png" alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;">
+                                {% if feria.fotos.all.count > 0 %}
+                                <a href="{{feria.feria_id}}" target="_blank">
+                                    <img src="{{ MEDIA_URL }}{{feria.fotos.all.first.archivo}}" alt="{{feria.fotos.all.first.descripcion}}" 
+                                        class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;" 
+                                        loading="lazy">                                    
                                 </a>
+                                {% else %} 
+                                <!-- La feria no tiene imagenes asociadas -->
+                                <a href="{{feria.feria_id}}" target="_blank">
+                                    <!-- TODO: CAMBIAR POR ALGO NUESTRO -->
+                                    <img src="https://sertacentroamerica.com/costarica/wp-content/uploads/sites/3/2021/05/placeholder-106.png"
+                                        alt="Imagen Feria" class="img-fluid card-img" style="width:100%;max-height: 160px;object-fit: cover;"
+                                        loading="lazy">
+                                </a>
+                                {% endif %}
                                 <div class="card-feria-container">
-                                    <a href="{{feria.ferias_id}}" target="_blank"><h4><b>{{feria.nombre}}</b></h4></a>
+                                    <a href="{{feria.feria_id}}/{{feria.get_slug}}">
+                                        <h5>
+                                            <b>{{feria.nombre}}</b>
+                                        </h5>
+                                    </a>
                                     <p class="text-muted">
-                                        <i class="bi bi-calendar2-week"></i>
-                                        {% for horario in feria.horarios.all %}
-                                            {{horario.dia_inicio}} {{horario.hora_inicio}} - {{horario.dia_final}} {{horario.hora_final}}
-                                        {% endfor %}
+                                        <i class="bi bi-geo"></i>
+                                        {{feria.get_provincia_display}}, {{feria.canton}}, {{feria.distrito}}
                                     </p>
+                                    {% if feria.abre_hoy %}
+                                    <span class="badge bg-success">Abre hoy</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Cerrado hoy</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -221,10 +222,11 @@
                     </nav>
                     {% endif %}
                     {% else %}
-                    <h4>No se encontraron ferias</h4>
+                    <div class="alert alert-danger" role="alert"><b><i class="bi bi-emoji-frown"></i> No se encontraron ferias.</b><br> Verifique que escribió el termino con acentos si es que los tiene.</div>
                     {% endif %}
                 </div>
         </div>
+        <!-- ============ Fin - Lista de ferias ============ -->
     </div>
 </div>
 {% endblock %}

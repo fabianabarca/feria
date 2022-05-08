@@ -9,8 +9,8 @@ from ferias.models import Feria, Horario
 class FeriaTestCase(TestCase):
     def setUp(self):
         feria_sca = Feria.objects.create(
-            ferias_id='SCA',
-            codigo='San Carlos',
+            feria_id='SCA',
+            codigo_url='San Carlos',
             nombre='Feria de San Carlos',
             provincia=1,
             canton='San Carlos',

@@ -26,7 +26,7 @@ class FeriaList(APIView):
 class FeriaDetail(APIView):
     def get_object(self, pk):
         try:
-            return Feria.objects.get(ferias_id=pk)
+            return Feria.objects.get(feria_id=pk)
         except Feria.DoesNotExist:
             raise Http404
 

@@ -1,18 +1,18 @@
 # ===================================================
 # Clases encargadas del API relacionado a Feria
 #
-# Author: Tyron Fonseca - tyron.fonseca@ucr.ac.cr
-# Last modified: 29/11/2021
+# Last modified: 26/01/2022 - Tyron
 # ===================================================
 
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from ferias.models import Feria
+from ferias.utils import is_in_radius
 from api.serializers.feria_serializer import FeriaSerializer
-from api.views.utils import DynamicFieldsViewMixin, FeriasHelper
+from api.views.utils import DynamicFieldsViewMixin
 from api.docs.params.parameters import optional_params
-from api.docs.params.ferias import ferias_params
+from api.docs.params.ferias_params import ferias_params
 
 
 @extend_schema(
@@ -30,6 +30,9 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
     serializer_class = FeriaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['provincia', 'canton', 'distrito',
+                        'metodo_pago', 'estacionamiento', 'parqueo_bicicleta',
+                        'sanitarios', 'campo_ferial', 'bajo_techo',
+                        'agua_potable', 'accesibilidad',
                         'horarios__dia_inicio', 'horarios__dia_final',
                         'horarios__hora_inicio', 'horarios__hora_final']
     search_fields = ['nombre', 'provincia',
@@ -37,7 +40,7 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
                      'horarios__dia_final']
 
     def get_queryset(self):
-        ferias_id_filtered = []
+        feria_id_filtered = []
         ferias = Feria.objects.all()
         # Parametros del URL
         lat = self.request.query_params.get('lat')
@@ -48,21 +51,21 @@ class FeriaList(DynamicFieldsViewMixin, generics.ListAPIView):
             index = 0
             for feria in ferias.iterator():
                 # Verificar si esta en el radio
-                if FeriasHelper.is_in_radius(float(lat), float(lon),
-                                             feria.latitud, feria.longitud,
-                                             int(radius)):
+                if is_in_radius(float(lat), float(lon),
+                                 feria.latitud, feria.longitud,
+                                 int(radius)):
                     # Agregar ID de la feria
-                    ferias_id_filtered.insert(index, feria.ferias_id)
+                    feria_id_filtered.insert(index, feria.feria_id)
                     index = index + 1
             # Filtrar las ferias que esten es el radio dado
-            return ferias.filter(ferias_id__in=ferias_id_filtered)
+            return ferias.filter(feria_id__in=feria_id_filtered)
         else:
             # Devolver todas las ferias si falta alguno de los parametros
             return ferias
 
 
 @extend_schema(
-    summary="ferias/{ferias_id}/",
+    summary="ferias/{feria_id}/",
     tags=['Ferias'],
     parameters=optional_params)
 class FeriaDetail(DynamicFieldsViewMixin, generics.RetrieveAPIView):
