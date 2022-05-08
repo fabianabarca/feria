@@ -7,7 +7,8 @@ generic_response_productos = [{
     "nombre_comun": "string",
     "imagen": "http://example.com",
     "descripcion": "string",
-    "temporada": "string"
+    "temporada": "string",
+    "precio": 1500.0
 }]
 
 

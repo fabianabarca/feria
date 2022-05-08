@@ -12,6 +12,7 @@ class ProductoSerializer(serializers.Serializer):
     categoria = serializers.IntegerField(max_value=5, min_value=0)
     imagen = serializers.ImageField(allow_empty_file=True)
     icono = serializers.ImageField(allow_empty_file=True)
+    precio = serializers.FloatField()
 
     def create(self, validate_data):
         """
@@ -30,6 +31,7 @@ class ProductoSerializer(serializers.Serializer):
         instance.temporada = validate_data.get('temporada', instance.temporada)
         instance.imagen = validate_data.get('imagen', instance.imagen)
         instance.icono = validate_data.get('icono', instance.icono)
+        instance.precio = validate_data.get('precio', intance.precio)
         instance.save()
         return instance
 
