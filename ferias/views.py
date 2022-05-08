@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 from django.core import serializers
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from ferias.models import Feria
+from ferias.models import Feria, Producto
 from ferias.utils import is_in_radius, get_provincia_num
 
 
@@ -85,3 +85,13 @@ def ferias(request):
         'ferias': ferias_paged
         }
     return render(request, 'ferias_list.html', context)
+
+def lista_productos(request):
+    query = Q()
+    # Input search. We use a OR operator
+    query |= Q(nombre_comun__icontains=request.GET.get('search', ''))
+    productos = Producto.objects.filter(query)
+    context = {
+        'productos': productos,
+    }
+    return render(request, 'productos_list.html', context)

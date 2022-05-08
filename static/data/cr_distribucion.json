@@ -10,7 +10,7 @@
                     "Hospital",
                     "Catedral",
                     "Zapote",
-                    "San Francisco De Dos Rios",
+                    "San Francisco de Dos Rios",
                     "Uruca",
                     "Mata Redonda",
                     "Pavas",
@@ -31,7 +31,7 @@
                 "distritos": [
                     "Desamparados",
                     "San Miguel",
-                    "San Juan De Dios",
+                    "San Juan de Dios",
                     "San Rafael Arriba",
                     "San Rafael Abajo",
                     "San Antonio",
@@ -71,7 +71,7 @@
                 "distritos": [
                     "Aserr\u00ed",
                     "Tarbaca",
-                    "Vuelta De Jorco",
+                    "Vuelta de Jorco",
                     "San Gabriel",
                     "Legua",
                     "Monterrey",
@@ -95,7 +95,7 @@
                     "Guadalupe",
                     "San Francisco",
                     "Calle Blancos",
-                    "Mata De Platano",
+                    "Mata de Platano",
                     "Ip\u00eds",
                     "Rancho Redondo",
                     "Purral"
@@ -123,11 +123,11 @@
                 ]
             },
             {
-                "nombre": "V\u00e1zquez De Coronado",
+                "nombre": "V\u00e1zquez de Coronado",
                 "distritos": [
                     "San Isidro",
                     "San Rafael",
-                    "Dulce Nombre De Jesus",
+                    "Dulce Nombre de Jesus",
                     "Patalillo",
                     "Cascajal"
                 ]
@@ -161,7 +161,7 @@
                 ]
             },
             {
-                "nombre": "Montes De Oca",
+                "nombre": "Montes de Oca",
                 "distritos": [
                     "San Pedro",
                     "Sabanilla",
@@ -174,7 +174,7 @@
                 "distritos": [
                     "San Pablo",
                     "San Pedro",
-                    "San Juan De Mata",
+                    "San Juan de Mata",
                     "San Luis",
                     "Carara"
                 ]
@@ -199,7 +199,7 @@
             {
                 "nombre": "P\u00e9rez Zeled\u00f3n",
                 "distritos": [
-                    "San Isidro De El General",
+                    "San Isidro de El General",
                     "El General",
                     "Daniel Flores",
                     "Rivas",
@@ -275,7 +275,7 @@
                     "San Roque",
                     "Tacares",
                     "Rio Cuarto",
-                    "Puente De Piedra",
+                    "Puente de Piedra",
                     "Bolivar"
                 ]
             },
@@ -518,7 +518,7 @@
                     "El Tejar",
                     "San Isidro",
                     "Tobosi",
-                    "Patio De Agua"
+                    "Patio de Agua"
                 ]
             }
         ]
@@ -610,7 +610,7 @@
                 "nombre": "San Pablo",
                 "distritos": [
                     "San Pablo",
-                    "Rincon De Sabanilla"
+                    "Rincon de Sabanilla"
                 ]
             },
             {
@@ -647,7 +647,7 @@
                     "Quebrada Honda",
                     "S\u00e1mara",
                     "Nosara",
-                    "Bel\u00e9n De Nosarita"
+                    "Bel\u00e9n de Nosarita"
                 ]
             },
             {
@@ -795,7 +795,7 @@
                 ]
             },
             {
-                "nombre": "Montes De Oro",
+                "nombre": "Montes de Oro",
                 "distritos": [
                     "Miramar",
                     "La Uni\u00f3n",
