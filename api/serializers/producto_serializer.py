@@ -20,4 +20,4 @@ class ProductoSerializer(DynamicFieldsSerializerMixin, ModelSerializer):
     class Meta:
         model = Producto
         fields = ['categoria', 'nombre_cientifico', 'nombre_comun', 'imagen',
-                  'descripcion', 'temporada']
+                  'descripcion', 'temporada', 'precio']
