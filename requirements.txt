@@ -1,3 +1,11 @@
+#Como instalar paquetes
+pip install (nombre del paquete)
+Ejemplo: pip install Django==3.2.7
+
+En caso de dar error por permisos de administrador:
+pip install (nombre del paquete) --user
+Ejemplo: pip install Django==3.2.7 --user
+
 #Django
 Django==3.2.7
 python-decouple==3.4
